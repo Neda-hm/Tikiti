@@ -15,6 +15,17 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        admin:
+            pattern:            /security
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /security/login
+                check_path:     /security/login_check
+                success_handler: redirect.after.login
+            logout:
+                path:           /security/logout
+                target:         /security/login
+            anonymous:    true
         main:
             pattern: ^/
             form_login:

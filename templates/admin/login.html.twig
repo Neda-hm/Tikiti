@@ -35,12 +35,17 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="index.html">
+      <form class="form-horizontal" action="{{ path("admin_login_check") }}" method="post" novalidate>
+                                        
         <h2 class="form-login-heading">sign in now</h2>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% if error %}
+            <label for="customer" class="error main-error">{{ error.messageKey|trans(error.messageData) }}</label>
+        {% endif %}
         <div class="login-wrap">
-          <input type="text" class="form-control" placeholder="User ID" autofocus>
+          <input type="text" class="form-control" placeholder="E-mail" id="cs_username" name="_username" value="{{ last_username }}" required>
           <br>
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Mot de passe" id="cs_password" name="_password" required>
           <label class="checkbox">
             <input type="checkbox" value="remember-me"> Remember me
             <span class="pull-right">
