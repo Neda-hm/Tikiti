@@ -35,7 +35,8 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-horizontal" action="{{ path("admin_login_check") }}" method="post" novalidate>
+      <form class="form-login" 
+      action="{{ path("admin_login_check") }}" method="post" novalidate>
                                         
         <h2 class="form-login-heading">sign in now</h2>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
