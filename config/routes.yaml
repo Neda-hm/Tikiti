@@ -12,3 +12,8 @@ admin_login_check:
 admin_logout:
     path:  /security/logout
     controller: App\Controller\SecurityController::logoutAction
+
+admin_controller:
+    resource: ../../src/Controller/Admin/
+    type: annotation
+    prefix: /security/admin
