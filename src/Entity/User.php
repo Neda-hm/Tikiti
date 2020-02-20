@@ -50,6 +50,11 @@ class User extends BaseUser
     protected $lat;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $codePostale;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $tel;
@@ -145,6 +150,18 @@ class User extends BaseUser
     public function setTel(string $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getCodePostale(): ?int
+    {
+        return $this->codePostale;
+    }
+
+    public function setCodePostale(int $codePostale): self
+    {
+        $this->codePostale = $codePostale;
 
         return $this;
     }
