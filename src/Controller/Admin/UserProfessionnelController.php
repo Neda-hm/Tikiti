@@ -9,19 +9,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 /**
  * @Route("/user/professionnel")
  */
 class UserProfessionnelController extends AbstractController
 {
+
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder) {
+        $this->encoder = $encoder;
+    }
+
     /**
      * @Route("/", name="user_professionnel_index", methods={"GET"})
      */
     public function index(UserProfessionnelRepository $userProfessionnelRepository): Response
     {
         return $this->render('admin/user_professionnel/index.html.twig', [
-            'user_professionnels' => $userProfessionnelRepository->findAll(),
+            'user_professionnels' => null,
         ]);
     }
 
@@ -36,6 +45,12 @@ class UserProfessionnelController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $data = $form->getData();
+            $plainPassword = $data->getUser()->getPassword();
+            $encoded = $this->encoder->encodePassword($userProfessionnel->getUser(), $plainPassword);
+            $userProfessionnel->getUser()->setPassword($encoded);      
+
             $entityManager->persist($userProfessionnel);
             $entityManager->flush();
 
