@@ -17,8 +17,8 @@ class UserProfessionnel extends User
      */
     private $UrlLogo;
 
+   
     
-
     public function getUrlLogo(): ?string
     {
         return $this->UrlLogo;
@@ -30,4 +30,7 @@ class UserProfessionnel extends User
 
         return $this;
     }
+
+   
+
 }

@@ -1,0 +1,46 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block body %}
+      
+<div class="row mt">
+          <div class="col-lg-12">
+            <h4><i class="fa fa-angle-right"> New Account </i></h4>
+            <div class="form-panel">
+              <div class="table-responsive-xl">
+  <table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for user in users %}
+          {% if user.username != 'admin' %}
+            <tr>
+                <td>{{user.nom}}</td>
+                <td>{{user.prenom}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.tel}}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+    
+</table>
+
+
+
+</div>
+            </div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-12 -->
+        </div>
+
+
+
+{% endblock %}
