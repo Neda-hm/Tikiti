@@ -1,41 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Calendrier index{% endblock %}
+{% block title %} Calendrier {% endblock %}
 
 {% block body %}
-    <h1>Calendrier index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>DateDebut</th>
-                <th>DateFin</th>
-                <th>HeureDebut</th>
-                <th>HeureFin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for calendrier in calendriers %}
-            <tr>
-                <td>{{ calendrier.id }}</td>
-                <td>{{ calendrier.dateDebut }}</td>
-                <td>{{ calendrier.dateFin }}</td>
-                <td>{{ calendrier.heureDebut }}</td>
-                <td>{{ calendrier.heureFin }}</td>
-                <td>
-                    <a href="{{ path('calendrier_show', {'id': calendrier.id}) }}">show</a>
-                    <a href="{{ path('calendrier_edit', {'id': calendrier.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('calendrier_new') }}">Create new</a>
+ <section id="main-content">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Calendar</h3>
+        <!-- page start-->
+        <div class="row mt">
+          <aside class="col-lg-3 mt">
+            <h4><i class="fa fa-angle-right"></i> Draggable Events</h4>
+            <div id="external-events">
+              <div class="external-event label label-theme">My Event 1</div>
+              <div class="external-event label label-success">My Event 2</div>
+              <div class="external-event label label-info">My Event 3</div>
+              <div class="external-event label label-warning">My Event 4</div>
+              <div class="external-event label label-danger">My Event 5</div>
+              <div class="external-event label label-default">My Event 6</div>
+              <div class="external-event label label-theme">My Event 7</div>
+              <div class="external-event label label-info">My Event 8</div>
+              <div class="external-event label label-success">My Event 9</div>
+              <p class="drop-after">
+                <input type="checkbox" id="drop-remove"> Remove After Drop
+              </p>
+            </div>
+          </aside>
+          <aside class="col-lg-9 mt">
+            <section class="panel">
+              <div class="panel-body">
+                <div id="calendar" class="has-toolbar"></div>
+              </div>
+            </section>
+          </aside>
+        </div>
+        <!-- page end-->
+      </section>
+      <!-- /wrapper -->
+    </section>
+    </section>
+    
 {% endblock %}
