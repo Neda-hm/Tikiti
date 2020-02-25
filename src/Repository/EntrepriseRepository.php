@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\UserProfessionnel;
+use App\Entity\Entreprise;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method UserProfessionnel|null find($id, $lockMode = null, $lockVersion = null)
- * @method UserProfessionnel|null findOneBy(array $criteria, array $orderBy = null)
- * @method UserProfessionnel[]    findAll()
- * @method UserProfessionnel[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Entreprise|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Entreprise|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Entreprise[]    findAll()
+ * @method Entreprise[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserProfessionnelRepository extends ServiceEntityRepository
+class EntrepriseRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UserProfessionnel::class);
+        parent::__construct($registry, Entreprise::class);
     }
 
     // /**
-    //  * @return UserProfessionnel[] Returns an array of UserProfessionnel objects
+    //  * @return Entreprise[] Returns an array of Entreprise objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class UserProfessionnelRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?UserProfessionnel
+    public function findOneBySomeField($value): ?Entreprise 
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')

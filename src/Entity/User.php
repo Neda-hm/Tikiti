@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
  * @UniqueEntity(fields="username", message="Un utilisateur existe avec ce nom d'utilisateur.")
  * @UniqueEntity(fields="email", message="Un utilisateur existe avec cet email.")
+ * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {
@@ -61,6 +61,12 @@ class User extends BaseUser
      * @ORM\Column(type="string")
      */
     protected $tel;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Entreprise", inversedBy="user")
+     * @ORM\JoinColumn(name="entreprise_id", referencedColumnName="id", nullable=true)
+     */
+    protected $userPro;
 
     public function __construct()
     {
@@ -165,6 +171,18 @@ class User extends BaseUser
     public function setCodePostale(int $codePostale): self
     {
         $this->codePostale = $codePostale;
+
+        return $this;
+    }
+
+    public function getUserPro(): ?Entreprise
+    {
+        return $this->userPro;
+    }
+
+    public function setUserPro(?Entreprise $userPro): self
+    {
+        $this->userPro = $userPro;
 
         return $this;
     }

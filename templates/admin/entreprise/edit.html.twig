@@ -1,0 +1,17 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Edit Entreprise {% endblock %}
+
+
+{% block body %}
+    <div class="row mt">
+          <div class="col-lg-12">
+            <h4><i class="fa fa-angle-right"></i> Modifier entreprise </h4>
+            <div class="form-panel">
+              {% include 'admin/entreprise/_form.html.twig' %}
+            </div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-12 -->
+        </div>
+{% endblock %}
