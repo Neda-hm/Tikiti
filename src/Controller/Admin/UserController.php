@@ -20,7 +20,8 @@ class UserController extends AbstractController
 
     private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder) {
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
         $this->encoder = $encoder;
     }
 
@@ -55,6 +56,8 @@ class UserController extends AbstractController
             $plainPassword = $data->getPassword();
             $encoded = $this->encoder->encodePassword($user, $plainPassword);
             $user->setPassword($encoded);
+            $user->setLat($data->getLat());
+            $user->setLng($data->getLng());
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -85,11 +88,18 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+        $form->remove('password');
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $data = $form->getData();
+            $user->setLat($data->getLat());
+            $user->setLng($data->getLng());
+            
+
             return $this->redirectToRoute('user_index');
+
         }
 
         return $this->render('admin/user/edit.html.twig', [

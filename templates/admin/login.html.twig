@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="utf-8">
@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+  <title>Tiki Ti</title>
 
   <!-- Favicons -->
   <link href="{{ asset ('admin/img/favicon.png')}}" rel="icon">
@@ -22,7 +22,7 @@
   <link href="{{ asset ('admin/css/style-responsive.css')}}" rel="stylesheet">
   
   <!-- =======================================================
-    Template Name: Dashio
+    Template Name: dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
     Author: TemplateMag.com
     License: https://templatemag.com/license/
@@ -38,7 +38,7 @@
       <form class="form-login" 
       action="{{ path("admin_login_check") }}" method="post" novalidate>
                                         
-        <h2 class="form-login-heading">sign in now</h2>
+        <h2 class="form-login-heading"> Connecter </h2>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         {% if error %}
             <label for="customer" class="error main-error">{{ error.messageKey|trans(error.messageData) }}</label>
@@ -47,19 +47,9 @@
           <input type="text" class="form-control" placeholder="E-mail" id="cs_username" name="_username" value="{{ last_username }}" required>
           <br>
           <input type="password" class="form-control" placeholder="Mot de passe" id="cs_password" name="_password" required>
-          <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me
-            <span class="pull-right">
-            <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
-            </span>
-            </label>
+         <br>
           <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
           <hr>
-          <div class="login-social-link centered">
-            <p>or you can sign in via your social network</p>
-            <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
-            <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
-          </div>
           <div class="registration">
             Don't have an account yet?<br/>
             <a class="" href="#">

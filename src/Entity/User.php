@@ -5,10 +5,13 @@ namespace App\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @UniqueEntity(fields="username", message="Un utilisateur existe avec ce nom d'utilisateur.")
+ * @UniqueEntity(fields="email", message="Un utilisateur existe avec cet email.")
  */
 class User extends BaseUser
 {
