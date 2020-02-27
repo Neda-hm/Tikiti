@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Entreprise;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CalendrierRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\EvenementRepository")
  */
-class Calendrier
+class Evenement
 {
     /**
      * @ORM\Id()
@@ -15,6 +16,16 @@ class Calendrier
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     *
+     * @ORM\Column(type="string")
+     */
+    private $titre;
+   /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprise", inversedBy="event")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $entreprise;
       /**
      *
      * @ORM\Column(type="date")
@@ -86,6 +97,30 @@ class Calendrier
     public function setHeureFin(string $heureFin): self
     {
         $this->heureFin = $heureFin;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $entreprise): self
+    {
+        $this->entreprise = $entreprise;
 
         return $this;
     }
