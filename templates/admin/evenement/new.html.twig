@@ -1,6 +1,6 @@
 
 {% extends 'admin/admin.html.twig' %}
-{% block title %} Calendrier{% endblock %}
+{% block title %} Evenement{% endblock %}
 
 {% block stylesheets %}
 
@@ -12,6 +12,7 @@
 {% endblock %} 
 
 {% block body %}
+<h3> Ajouter Un Événement </h3>
 <div class="row mt">
           <!--  DATE PICKERS -->
 <div class="col-lg-12">
@@ -21,18 +22,17 @@
     <div class="row mt">
           <!--  DATE PICKERS -->
         <div class="col-lg-12">
-            <label class="control-label col-md-3">Date Range</label>
+            <label class="control-label col-md-3"> Votre Date </label>
                 <div class="col-md-4">
                     <div class="input-group input-large" data-date="01/01/2014" data-date-format="mm/dd/yyyy">
                       <input type="text" class="form-control dpd1" name="from">
-                      <span class="input-group-addon">To</span>
-                      <input type="text" class="form-control dpd2" name="to">
+                      <span class="input-group-addon">à</span>
+                      <input type="text" class="form-control dpd2" name="à">
                     </div>
-                    <span class="help-block">Select date range</span>
                 </div>
         </div>
         <div class="col-lg-12">
-                  <label class="control-label col-md-3">24hr Timepicker</label>
+                  <label class="control-label col-md-3">Votre Temps Debut (24H) </label>
                 <div class="col-md-4">
                 <div class="input-group bootstrap-timepicker">
                       <input type="text" class="form-control timepicker-24">
@@ -41,7 +41,17 @@
                         </span>
                 </div>
                 </div>
-           
+        </div>
+        <div class="col-lg-12">
+                  <label class="control-label col-md-3">Votre Temps Fin (24H) </label>
+                <div class="col-md-4">
+                <div class="input-group bootstrap-timepicker">
+                      <input type="text" class="form-control timepicker-24">
+                      <span class="input-group-btn">
+                        <button class="btn btn-theme04" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                </div>
+                </div>
         </div>
     </div> 
       </section>
@@ -50,9 +60,8 @@
 </div>
 </div>
     
-    <a href="{{ path('calendrier_index') }}" class="btn btn-success">back to list</a>
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    
 
 {% endblock %}
 

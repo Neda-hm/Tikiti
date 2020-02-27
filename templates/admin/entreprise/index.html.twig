@@ -38,7 +38,7 @@
                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userPro.id) }}">
                    <button class="btn btn-danger">Delete</button>
        </form>
-           </tr>
+         <td><a href="{{ path('evenement_index', {'id': userPro.id }) }}" class="btn btn-info">Event</a>
         {% endfor %}
          
     </tbody>

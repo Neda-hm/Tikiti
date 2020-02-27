@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Type;
 use App\Entity\User;
+use App\Entity\Evenement;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -27,6 +30,10 @@ class Entreprise
      * @ORM\OneToOne(targetEntity="User", mappedBy="userPro", cascade={"persist", "remove"})
      */
     private $user;
+    /**
+    * @ORM\OneToMany(targetEntity="Evenement", cascade={"remove"}, mappedBy="entreprise")
+    */
+    private $event;
 
      /**
      * @ORM\Column(type="string")
@@ -42,6 +49,11 @@ class Entreprise
      * @var \DateTime
      */
     private $updatedAt;
+
+    public function __construct()
+    {
+        $this->event = new ArrayCollection();
+    }
     
     public function setLogo(File $UrlLogo = null)
     {
@@ -96,6 +108,37 @@ class Entreprise
         $newUserPro = null === $user ? null : $this;
         if ($user->getUserPro() !== $newUserPro) {
             $user->setUserPro($newUserPro);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Evenement[]
+     */
+    public function getEvent(): Collection
+    {
+        return $this->event;
+    }
+
+    public function addEvent(Evenement $event): self
+    {
+        if (!$this->event->contains($event)) {
+            $this->event[] = $event;
+            $event->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Evenement $event): self
+    {
+        if ($this->event->contains($event)) {
+            $this->event->removeElement($event);
+            // set the owning side to null (unless already changed)
+            if ($event->getEntreprise() === $this) {
+                $event->setEntreprise(null);
+            }
         }
 
         return $this;
