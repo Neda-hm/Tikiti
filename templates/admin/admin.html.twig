@@ -67,7 +67,7 @@
         <ul class="sidebar-menu" id="nav-accordion">
 
            <br>
-          <h5 class="centered"> <strong> Welcome </strong></h5>
+          <h3 class="centered"> <strong> Bienvenue </strong></h3>
          
             
           <li class="mt">
@@ -82,8 +82,8 @@
               <span>Gestion Des utilisateurs </span>
               </a>
             <ul class="sub"  style="{% if 'user_index' == app.request.get('_route') %}display:block;{% endif %}" >
-              <li><a href="{{ path('user_index') }}">Liste des utilisateurs</a></li>
-              <li><a href="{{ path('user_new') }}">Ajouter un utilisateurs</a></li>
+              <li><a href="{{ path('user_index') }}"class="{% if 'user_index' == app.request.get('_route') %}active{% endif %}">Liste des utilisateurs</a></li>
+              <li><a href="{{ path('user_new') }}"class="{% if 'user_new' == app.request.get('_route') %}active{% endif %}">Ajouter un utilisateurs</a></li>
             </ul>
           </li>
           <li class="sub-menu">
