@@ -13,6 +13,10 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 
+
+
+
+
 /**
  * @Route("/user")
  */
@@ -48,6 +52,8 @@ class UserController extends AbstractController
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+
+         
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -88,8 +94,9 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user): Response
     {
         $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
         $form->remove('password');
+        
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();

@@ -9,6 +9,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 
 class UserType extends AbstractType
@@ -26,7 +30,7 @@ class UserType extends AbstractType
                 'class' => 'form-control'
             ]
         ])
-        ->add('email', TextType::class, [
+        ->add('email', EmailType::class, [
             'attr' => [
                 'class' => 'form-control'
             ]

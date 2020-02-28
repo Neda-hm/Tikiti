@@ -8,17 +8,33 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Form\AdminType;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\UserRepository ;
 
 class AdminController extends AbstractController
 {
+
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepository){
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * @Route("/index", name="admin_homepage")
      */
     public function index()
     {
-      
-        return $this->render('admin/index.html.twig');
-    }
+       $nbrTotal = count($this->userRepository->findAll());
+       $nbUser = count($this->userRepository->findBy(['userPro' => null]));
+
+       $nbrEntreprise = $nbrTotal - $nbUser;
+         
+       $pourcentUser = round($nbUser * 100) / $nbrTotal;
+       $pourcentEntreprise = round($nbrEntreprise * 100) / $nbrTotal;
+
+        return $this->render('admin/index.html.twig', ['pourcentUser' => $pourcentUser, 'pourcentEnt' => $pourcentEntreprise]) ;
+         } 
+    
      /**
      * @Route("/profile", name="admin_show", methods={"GET"})
      */
