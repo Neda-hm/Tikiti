@@ -57,7 +57,7 @@
       </div>
     </header>
     <!--header end-->
-     **********************************************************************************************************************************************************
+    <!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
      *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
@@ -77,7 +77,7 @@
               </a>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;" class="{% if 'user_index' == app.request.get('_route') %}active{% endif %}" >
+            <a href="javascript:;" class="{% if 'user_index' == app.request.get('_route') or 'user_new' == app.request.get('_route') %}active{% endif %}" >
               <i class="fa fa-desktop"></i>
               <span>Gestion Des utilisateurs </span>
               </a>
@@ -87,7 +87,7 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;" class="{% if 'entreprise_index' == app.request.get('_route') %}active{% endif %}"  >
+            <a href="javascript:;" class="{% if 'entreprise_index' == app.request.get('_route') or 'entreprise_new' == app.request.get('_route')%}active{% endif %}"  >
               <i class="fa fa-cogs"></i>
               <span>Gestion Des Entreprises</span>
               </a>
@@ -97,7 +97,7 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;" class="{% if 'admin_show' == app.request.get('_route') %}active{% endif %}">
+            <a href="javascript:;" class="{% if 'admin_show' == app.request.get('_route') or 'admin_edit' == app.request.get('_route')%}active{% endif %}">
               <i class="fa fa-book"></i>
               <span>Mon compte</span>
               </a>
