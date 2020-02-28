@@ -24,17 +24,7 @@ var Script = function () {
         lineColors:['#4ECDC4','#ed5565']
       });
 
-      Morris.Donut({
-        element: 'hero-donut',
-        data: [
-          {label: 'Jam', value: 25 },
-          {label: 'Frosted', value: 40 },
-          {label: 'Custard', value: 25 },
-          {label: 'Sugar', value: 10 }
-        ],
-          colors: ['#3498db', '#2980b9', '#34495e'],
-        formatter: function (y) { return y + "%" }
-      });
+      
 
       Morris.Area({
         element: 'hero-area',

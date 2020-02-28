@@ -1,20 +1,53 @@
 {% extends 'admin/admin.html.twig' %}
 
 {% block body %}
- <div class="row mt">
-          <div class="col-lg-12">
-            <h2><i class="fa fa-angle-right"> Users </i></h2>
-            <br>
-            <div class="form-panel">
-                <h4><i class="fa fa-angle-right"></i> Chart Example 4</h4>
+ <section id="main-content">
+      <section class="Centre">
+        <!-- page start-->
+        <div id="morris">
+          <div class="row">
+            <div class="col-lg-12 "hidden>
+              <div class="content-panel">
+                <h4><i class="Centre"></i> Chart Example 1</h4>
+                <div class="panel-body">
+                  <div id="hero-graph" class="graph"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-12">
+              <div class="content-panel">
+                <h4><i class="Centre"></i> >   Pourcentage d'utilisateurs</h4>
                 <div class="panel-body">
                   <div id="hero-donut" class="graph"></div>
                 </div>
               </div>
-      </div>
-      </div>
-  
+            </div>
+          </div>
+        </div>
+        <!-- page end-->
+      </section>
+    </section>
 
-  <script src="{{ asset('admin/lib/morris-conf.js') }}"></script>
               
 {% endblock body %}
+
+{% block javascripts %}
+ 
+  
+   <script src="{{ asset('admin/lib/raphael/raphael.min.js') }}"></script>
+  <script src="{{ asset('admin/lib/morris/morris.min.js') }}"></script>
+  <script src="{{ asset('admin/lib/morris-conf.js') }}"></script>
+  <script>
+  Morris.Donut({
+        element: 'hero-donut',
+        data: [
+          {label: 'utilisateurs', value: {{ pourcentUser }}},
+          {label: 'entreprises', value: {{ pourcentEnt }} }
+        ],
+          colors: ['#3498db', '#34495e'],
+        formatter: function (y) { return y + "%" }
+      });
+      </script>
+
+{% endblock %}

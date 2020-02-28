@@ -6,6 +6,7 @@ namespace App\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -59,6 +60,7 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\Regex(pattern="/[0-9]/", message="Numéro de tel doit contenir que des chiffres.")
      */
     protected $tel;
 
