@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Type;
 use App\Entity\User;
 use App\Entity\Evenement;
-use App\Entity\EntrepriseType;
+use App\Entity\HoraireTravail;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -36,6 +36,10 @@ class Entreprise
     */
     private $event;
 
+    /**
+    * @ORM\OneToMany(targetEntity="HoraireTravail", cascade={"remove"}, mappedBy="entreprise")
+    */
+    private $heures;
      /**
      * @ORM\Column(type="string")
      */
@@ -54,6 +58,7 @@ class Entreprise
     public function __construct()
     {
         $this->event = new ArrayCollection();
+        $this->heures = new ArrayCollection();
     }
     
     public function setLogo(File $UrlLogo = null)
@@ -139,6 +144,37 @@ class Entreprise
             // set the owning side to null (unless already changed)
             if ($event->getEntreprise() === $this) {
                 $event->setEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|HoraireTravail[]
+     */
+    public function getHeures(): Collection
+    {
+        return $this->heures;
+    }
+
+    public function addHeure(HoraireTravail $heure): self
+    {
+        if (!$this->heures->contains($heure)) {
+            $this->heures[] = $heure;
+            $heure->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHeure(HoraireTravail $heure): self
+    {
+        if ($this->heures->contains($heure)) {
+            $this->heures->removeElement($heure);
+            // set the owning side to null (unless already changed)
+            if ($heure->getEntreprise() === $this) {
+                $heure->setEntreprise(null);
             }
         }
 

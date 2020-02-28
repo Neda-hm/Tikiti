@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Evenement;
-use App\Entity\Entreprise;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
 use App\Repository\EntrepriseRepository;
@@ -11,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Entreprise;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @Route("/evenement")
@@ -54,7 +54,7 @@ class EvenementController extends AbstractController
             if ($dateD > $dateF ) {
 
                 $this->addFlash('error', 'Dete début doit être inférierur à la date fin');
-                
+
             } else {
 
                 $evenement->setDateDebut(new \DateTime( $data->getDateDebutTemp()));

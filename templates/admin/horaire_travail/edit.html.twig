@@ -1,0 +1,16 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Edit Événements{% endblock %}
+
+{% block body %}
+    <h1> Modifier Heure de  travail</h1>
+<div class="row mt" class="{form"} >
+          <!--  DATE PICKERS -->
+<div class="col-lg-12">
+<div class="form-panel">
+    {{ include('admin/horaire_travail/_form.html.twig', {'button_label': 'Update'}) }}
+
+    </div>
+</div>
+</div>
+{% endblock %}
