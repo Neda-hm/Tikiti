@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Entreprise;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EvenementRepository")
  */
@@ -47,6 +48,8 @@ class Evenement
      */
     private $heureFin;
 
+    private $dateDebutTemp;
+    private $dateFinTemp;
 
     public function getId(): ?int
     {
@@ -124,5 +127,28 @@ class Evenement
 
         return $this;
     }
+    public function getDateDebutTemp(): ?string
+    {
+        return $this->dateDebutTemp;
+    }
 
+    public function setDateDebutTemp(string $dateDebutTemp): self
+    {
+        $this->dateDebutTemp = $dateDebutTemp;
+
+        return $this;
+    }
+    public function getDateFinTemp(): ?string
+    {
+        return $this->dateFinTemp;
+    }
+
+    public function setDateFinTemp(string $dateFinTemp): self
+    {
+        $this->dateFinTemp = $dateFinTemp;
+
+        return $this;
+    }
+    
+    
 }

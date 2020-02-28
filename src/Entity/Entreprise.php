@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Type;
 use App\Entity\User;
 use App\Entity\Evenement;
+use App\Entity\EntrepriseType;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;

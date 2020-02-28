@@ -3,43 +3,69 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Evenement;
+use App\Entity\Entreprise;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
+use App\Repository\EntrepriseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * @Route("/evenement")
  */
 class EvenementController extends AbstractController
 {
+
+    private $entrepriseRepository;
+
+    public function __construct(EntrepriseRepository $entrepriseRepository) {
+        $this->entrepriseRepository = $entrepriseRepository;
+    }
     /**
-     * @Route("/", name="evenement_index", methods={"GET"})
+     * @Route("/{id}", name="evenement_index", methods={"GET"})
      */
-    public function index(EvenementRepository $evenementRepository): Response
+    public function index(Entreprise $entreprise): Response
     {
         return $this->render('admin/evenement/index.html.twig', [
-            'evenements' => $evenementRepository->findAll(),
+            'evenements' => $entreprise->getEvent(), 
+            'entrepriseId' => $entreprise->getId(),
+            'nomEntreprise' => $entreprise->getUser()->getUsername()
         ]);
     }
 
     /**
-     * @Route("/new", name="evenement_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="evenement_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, $id): Response
     {
         $evenement = new Evenement();
+        $evenement->setEntreprise($this->entrepriseRepository->find($id));
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($evenement);
-            $entityManager->flush();
+            
+            $data = $form->getData();
 
-            return $this->redirectToRoute('evenement_index');
+            $dateD = new \DateTime( $data->getDateDebutTemp());
+            $dateF = new \DateTime($data->getDateFinTemp());
+            if ($dateD > $dateF ) {
+
+                $this->addFlash('error', 'Dete début doit être inférierur à la date fin');
+                
+            } else {
+
+                $evenement->setDateDebut(new \DateTime( $data->getDateDebutTemp()));
+                $evenement->setDateFin(new \DateTime($data->getDateFinTemp()));
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($evenement);
+                $entityManager->flush();
+
+                return $this->redirect($this->generateUrl('evenement_index',['id'=> $id]));
+            }
         }
 
         return $this->render('admin/evenement/new.html.twig', [
@@ -69,10 +95,10 @@ class EvenementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('evenement_index');
+            return $this->redirect($this->generateUrl('evenement_index',['id'=> $evenement->getEntreprise()->getId()]));
         }
 
-        return $this->render('evenement/edit.html.twig', [
+        return $this->render('admin/evenement/edit.html.twig', [
             'evenement' => $evenement,
             'form' => $form->createView(),
         ]);
@@ -83,12 +109,14 @@ class EvenementController extends AbstractController
      */
     public function delete(Request $request, Evenement $evenement): Response
     {
+
+        $id = $evenement->getEntreprise()->getId();
         if ($this->isCsrfTokenValid('delete'.$evenement->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($evenement);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('evenement_index');
+        return $this->redirect($this->generateUrl('evenement_index',['id'=> $id]));
     }
 }
