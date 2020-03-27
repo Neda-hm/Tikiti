@@ -23,12 +23,12 @@
     <tbody>
         {%for userPro in entreprises %}
           <tr>
-            <td>{{userPro.user.username}}</td>
-            <td>{{userPro.user.email}}</td>
-            <td>{{userPro.user.tel}}</td>
-            <td>{{userPro.user.adresse}}</td>
-            <td>{{userPro.user.ville}}</td>
-            <td>{{userPro.user.codePostale}}</td>  
+            <td>{{ userPro.user.username }}</td>
+            <td>{{ userPro.user.email }}</td>
+            <td>{{ userPro.user.tel }}</td>
+            <td>{{ userPro.user.adresse }}</td>
+            <td>{{ userPro.user.ville }}</td>
+            <td>{{ userPro.user.codePostale }}</td>  
 
             <td><img src="{{asset('uploads/entreprises/images/'~ userPro.UrlLogo)}}" height="100" width="100"></td>
             

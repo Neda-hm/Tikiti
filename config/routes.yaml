@@ -17,3 +17,8 @@ admin_controller:
     resource: ../../src/Controller/Admin/
     type: annotation
     prefix: /security/admin
+
+api_controller:
+    resource: ../../src/Controller/Api/
+    type: annotation
+    prefix: /api

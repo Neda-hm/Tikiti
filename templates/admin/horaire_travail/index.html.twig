@@ -10,36 +10,40 @@
     <div class="form-panel">
     <div class="table-responsive-xl">
             <table class="table">
-                <thead>
+             <thead>
            
-                    <tr>
-                    <th> Jour Debut </th>
-                     <th> Jour Fin </th>
+                <tr>
+                    <th> Jours </th>
                      <th> Heure Debut AM </th>
                      <th> Heure Fin AM </th>
                      <th> Heure Debut PM </th>
                      <th> Heure Fin PM </th>
                      <th> Action </th>
-                     
-                     </tr>
-                     
-                    
-                </thead>
+                </tr>
+                      
+             </thead>
 
         <tbody> 
         <div style="display: flex; font-size: large;">
              <a href="{{ path('horaire_new', {id: entrepriseId} )}}" class="btn btn-success fa fa-plus"> Ajouter </a>
              </div>  
            {%for heure in horaire_travails %} 
+
+             
+            
                 <tr>   
                     
-                    <td>{{heure.jourDebut }}</td>
-                    <td>{{heure.jourFin }}</td>
-                    <td>{{heure.heureDebutMatin}}</td>
-                    <td>{{heure.heureFinMatin}}</td>
-                    <td>{{heure.heureDebutAp}}</td>
-                    <td>{{heure.heureFinAp}}</td>
-                <td>
+                     
+                      <td> {{heure.jours}}</td>
+                        <td> {{heure.heureDebutMatin}}</td>
+                        <td> {{heure.heureFinMatin}}</td>
+                        <td> {{heure.heureDebutAp}}</td>
+                        <td>{{heure.heureFinAp}}</td>
+
+                        
+                                         
+
+                 <td>
                      <div style="display: flex; font-size: large;">
                         <a href="{{ path('horaire_edit', {'id': heure.id }) }}" class="btn btn-warning fa fa-edit "></a>
                         <form method="post" action="{{ path('horaire_delete', {'id': heure.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
@@ -49,9 +53,9 @@
                         </form> 
                        
                     </div>
-                </td>
-            </tr>
-                       
+                 </td>
+                </tr>
+              
              {% endfor %}
              
                  

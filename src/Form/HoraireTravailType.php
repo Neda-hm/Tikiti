@@ -28,41 +28,34 @@ class HoraireTravailType extends AbstractType
             },
             'choice_label' => 'user.username'
         ])
-            ->add('jourDebut', ChoiceType::class, [
-                'choices'  => [
-                    'Lundi' => 'Lundi',
-                    'Mardi' => 'Mardi',
-                    'Mercredi' => 'Mercredi',
-                    'Jeudi' => 'Jeudi',
-                    'Vendredi' => 'Vendredi',
-                    'Samedi' => 'Samedi',
-                    'Dimanche' => 'Dimanche'
-                ],
-                'attr' => ['class' => 'form-control']
-            ])
-            ->add('jourFin', ChoiceType::class, [
-                'choices'  => [
-                    'Lundi' => 'Lundi',
-                    'Mardi' => 'Mardi',
-                    'Mercredi' => 'Mercredi',
-                    'Jeudi' => 'Jeudi',
-                    'Vendredi' => 'Vendredi',
-                    'Samedi' => 'Samedi',
-                    'Dimanche' => 'Dimanche'
-                ],
-                'attr' => ['class' => 'form-control']
+        ->add('jours', ChoiceType::class, [
+            'choices'  => [
+                'Lundi' => 'Lundi',
+                'Mardi' => 'Mardi',
+                'Mercredi' => 'Mercredi',
+                'Jeudi' => 'Jeudi',
+                'Vendredi' => 'Vendredi',
+                'Samedi' => 'Samedi',
+                'Dimanche' => 'Dimanche'
+            ],
+            'attr' => ['class' => 'form-control']      
             ])
             ->add('heureDebutMatin', TextType::class,
-            ['attr' => ['class' => 'form-control']])
+               ['attr' => ['class' => 'form-control'],
+               'required' => false
+            ])
             ->add('heureFinMatin', TextType::class,
-            ['attr' => ['class' => 'form-control']])
+               ['attr' => ['class' => 'form-control'],
+               'required' => false
+            ])
             ->add('heureDebutAp', TextType::class,
-            ['attr' => ['class' => 'form-control']
+               ['attr' => ['class' => 'form-control'],
+               'required' => false
             ])
             ->add('heureFinAp', TextType::class,
-            ['attr' => ['class' => 'form-control']
-            ]
-            )
+            ['attr' => ['class' => 'form-control'],
+            'required' => false
+         ])
         ;
     }
 

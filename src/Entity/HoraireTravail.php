@@ -19,18 +19,11 @@ class HoraireTravail
     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="heures")
     */
     private $entreprise;
-
      /**
      *
      * @ORM\Column(type="string")
      */
-    private $jourDebut;
-
-     /**
-     *
-     * @ORM\Column(type="string")
-     */
-    private $jourFin;
+    private $jours;
        /**
      *
      * @ORM\Column(type="string")
@@ -116,30 +109,19 @@ class HoraireTravail
 
         return $this;
     }
-
-    public function getJourDebut(): ?string
+   
+    
+    public function getJours(): ?string
     {
-        return $this->jourDebut;
+        return $this->jours;
     }
 
-    public function setJourDebut(string $jourDebut): self
+    public function setJours(string $jours): self
     {
-        $this->jourDebut = $jourDebut;
+        $this->jours = $jours;
 
         return $this;
     }
-
-    public function getJourFin(): ?string
-    {
-        return $this->jourFin;
-    }
-
-    public function setJourFin(string $jourFin): self
-    {
-        $this->jourFin = $jourFin;
-
-        return $this;
-    }
-
-
+    
+    
   }

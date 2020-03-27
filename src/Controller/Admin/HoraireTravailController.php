@@ -12,6 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\EntrepriseRepository;
 use App\Entity\Entreprise;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\NotNullValidator;
 
 /**
  * @Route("/horaire")
@@ -80,7 +82,10 @@ class HoraireTravailController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($this->generateUrl('horaire_index',['id'=> $horaireTravail->getEntreprise()->getId()]));
