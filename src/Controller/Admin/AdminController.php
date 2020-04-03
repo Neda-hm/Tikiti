@@ -19,6 +19,7 @@ class AdminController extends AbstractController
         $this->userRepository = $userRepository;
     }
 
+
     /**
      * @Route("/index", name="admin_homepage")
      */
@@ -33,7 +34,10 @@ class AdminController extends AbstractController
        $pourcentEntreprise = round(($nbrEntreprise * 100) / $nbrTotal);
 
         return $this->render('admin/index.html.twig', ['pourcentUser' => $pourcentUser, 'pourcentEnt' => $pourcentEntreprise]) ;
-         } 
+       
+       
+           
+    } 
     
      /**
      * @Route("/profile", name="admin_show", methods={"GET"})
