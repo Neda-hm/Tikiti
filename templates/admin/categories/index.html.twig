@@ -1,0 +1,62 @@
+{% extends 'admin/admin.html.twig' %}
+
+
+
+{% block body %}    
+ 
+              <div class="row mt">
+    <div class="col-lg-12">
+            <h2><i class="fa fa-angle-right"></i> Liste d'categories de l'entreprise {{nomEntreprise}}</h2> <br>
+    <div class="form-panel">
+    <div class="table-responsive-xl">
+            <table class="table">
+                <thead>
+           
+                    <tr>
+                     <th> Services Santés </th>
+                     <th> Services Finances </th>
+                     <th> Services Rapides </th>
+                     <th> Services Publics </th>
+                     
+                     <th> Action </th>
+                     
+                     </tr>
+                     
+                    
+                </thead>
+
+        <tbody> 
+           {%for categorie in categories %} 
+                <tr>   
+                    <td>{{categorie.Services-Santés}}</td> 
+                    <td>{{categorie.Services-Finances}}</td>
+                    <td>{{categorie.Services-Rapides}}</td>
+                    <td>{{categorie.Services-Publics}}</td>
+                <td>
+                     <div style="display: flex; font-size: large;">
+                        <a href="{{ path('categories_edit', {'id': categorie.id }) }}" class="btn btn-warning fa fa-edit "></a>
+                        <form method="post" action="{{ path('categories_delete', {'id': categorie.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
+                            <button class="btn btn-danger fa fa-trash-o"></button>
+                        </form> 
+                       
+                    </div>
+                </td>
+            </tr>
+                       
+             {% endfor %}
+             <div style="display: flex; font-size: large;">
+             <a href="{{ path('categories_new', {id: entrepriseId} )}}" class="btn btn-success fa fa-plus"> Ajouter </a>
+             </div>    
+        </tbody>
+    </table>
+    
+    </div>
+    </div>
+            <!-- /form-panel -->
+    </div>
+          <!-- /col-lg-12 -->
+    </div>
+         
+{% endblock %}

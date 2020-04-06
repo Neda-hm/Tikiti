@@ -4,12 +4,15 @@ namespace App\Form;
 
 use App\Entity\Entreprise;
 use App\Entity\Evenement;
+use App\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 use App\Form\UserType;
@@ -25,17 +28,17 @@ class EntrepriseType extends AbstractType
             ->add('logo',FileType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
-            ])
-        
-                   
-        ;
-    }
+                ]]);
+
+                
+        }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Entreprise::class,
         ]);
-    }
+
+           }
+
 }

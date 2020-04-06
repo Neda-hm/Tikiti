@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Categories{% endblock %}
+
+{% block body %}
+    <h1> Modifier la Liste Des Categories</h1>
+
+    <div class="col-lg-12">
+<div class="form-panel">
+    {{ include('admin/categories/_form.html.twig', {'button_label': 'Update'}) }}
+
+    </div>
+</div>
+
+{% endblock %}
