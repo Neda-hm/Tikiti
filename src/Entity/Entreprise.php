@@ -37,6 +37,12 @@ class Entreprise
     private $event;
 
     /**
+     * Plusieurs entreprises peuvent avoir une catégorie 
+     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="entreprise")
+    */
+     private $categorie;
+
+    /**
     * @ORM\OneToMany(targetEntity="HoraireTravail", cascade={"remove"}, mappedBy="entreprise")
     */
     private $heures;
@@ -181,5 +187,17 @@ class Entreprise
         return $this;
     }
 
-    
+    public function getCategorie(): ?Categories
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categories $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+   
 }

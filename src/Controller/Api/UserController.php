@@ -15,6 +15,9 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Symfony\Component\Serializer\SerializerInterface;
+
+
 
 class UserController extends FOSRestController
 {
@@ -69,7 +72,7 @@ class UserController extends FOSRestController
                 'telephone' => new Assert\Length(array('min' => 1)),
             ));
     
-            $violations = $validator->validate($data1, $constraint);
+            $violations = $validator->validate($data, $constraint);
     
             if ($violations->count() > 0) {
                 return new JsonResponse(["error" => (string)$violations], 500);
@@ -191,4 +194,86 @@ class UserController extends FOSRestController
             $violations = $validator->validate($data, $constraint); 
     }
 
+
+            /**
+             * @Route("/update-user/{id}", name="update_user", methods={"PUT"})
+             * @param Request $request
+             * @param UserManagerInterface $userManager
+             */
+            public function updateUser($id, UserManagerInterface $userManager, Request $request){
+        
+        /*
+        // sear user exp 1
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        //search user exp 2
+        $user = $userManager->findUserBy(['id' => $id]);
+        */
+
+        //search user exp 3
+        $user = $this->userRepository->find($id);
+
+        // if user don't exist
+        if ( !$user ) {
+
+            
+            return new JsonResponse(['error' => "Utilisateur n'existe pas"], 422);
+        }
+
+        // if nom != null then update nom
+        empty($request->get('nom')) ? true : $user->setNom($request->get('nom'));
+        empty($request->get('prenom')) ? true : $user->setPrenom($request->get('prenom'));
+        empty($request->get('tel')) ? true : $user->setTel($request->get('tel'));
+        empty($request->get('adress')) ? true : $user->setAdresse($request->get('adresse'));
+        empty($request->get('codePostal')) ? true : $user->setCodePostale($request->get('codePostale'));
+        empty($request->get('ville')) ? true : $user->setVille($request->get('ville'));
+        empty($request->get('lat')) ? true : $user->setLat($request->get('lat'));
+        empty($request->get('lng')) ? true : $user->setLng($request->get('lng'));
+        empty($request->get('password')) ? true : $user->setPlainPassword($request->get('password'));
+
+        try {
+            $userManager->updateUser($user, true);
+        } catch (\Exception $e) {
+            return new JsonResponse(["error" => $e->getMessage()], 500);
+        }        
+
+       
+        return new JsonResponse(["success" => "updated"], 200);
+
+        /* example
+        // On sauvegarde en base
+        $userManager = $this->getDoctrine()->getManager();
+        $userManager->persist($user);
+        $userManager->flush();
+        */
+    }
+
+
+            /**
+             * @Route("/user/{id}", name="user", methods={"Get"})
+             * @param Request $request
+             * @param UserManagerInterface $userManager
+             */
+            public function AccountUser($id, UserManagerInterface $userManager, Request $request){
+
+                $user = $this->userRepository->find($id);
+                if ( !$user ) {
+
+            
+                    return new JsonResponse(['error' => "Utilisateur n'existe pas"], 422);
+                }
+                    $result = [
+                        'username' => $user->getUsername(),
+                        'nom' => $user->getNom(),
+                        'prenom' => $user->getPrenom(),
+                        'ville' => $user->getVille(),
+                        'adresse' => $user->getAdresse(),
+                        'email' => $user->getEmail(),
+                        'tel' => $user->getTel(),
+                        'codePostal' => $user->getCodePostale(),
+                        'id' => $user->getId()
+                    ];
+                    
+                        return new jsonResponse(['data' => $result],200);
+}
 }
