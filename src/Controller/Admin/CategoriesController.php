@@ -26,19 +26,17 @@ class CategoriesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="categories_index", methods={"GET"})
+     * @Route("/", name="categories_index", methods={"GET"})
      */
     public function index(CategoriesRepository $categoriesRepository): Response
     {
-        return $this->render('categories/index.html.twig', [
-            'categories' =>  $entreprise->getCategorie(),
-            'entrepriseId' => $entreprise->getId(),
-            'nomEntreprise' => $entreprise->getUser()->getUsername(),
+        return $this->render('admin/categories/index.html.twig', [
+            'categories' =>  $categoriesRepository->findAll()
         ]);
     }
 
     /**
-     * @Route("/new/{id}", name="categories_new", methods={"GET","POST"})
+     * @Route("/new", name="categories_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -51,10 +49,10 @@ class CategoriesController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirect($this->generateUrl('categories_index',['id'=> $id]));
+            return $this->redirect($this->generateUrl('categories_index'));
         }
 
-        return $this->render('categories/new.html.twig', [
+        return $this->render('admin/categories/new.html.twig', [
             'category' => $category,
             'form' => $form->createView(),
         ]);
@@ -75,16 +73,19 @@ class CategoriesController extends AbstractController
      */
     public function edit(Request $request, Categories $category): Response
     {
+
         $form = $this->createForm(CategoriesType::class, $category);
         $form->handleRequest($request);
+
+        $category->setUrlIcone("");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirect($this->generateUrl('categories_index',['id'=> $evenement->getEntreprise()->getId()]));
+            return $this->redirect($this->generateUrl('categories_index'));
         }
 
-        return $this->render('categories/edit.html.twig', [
+        return $this->render('admin/categories/edit.html.twig', [
             'category' => $category,
             'form' => $form->createView(),
         ]);
@@ -95,12 +96,14 @@ class CategoriesController extends AbstractController
      */
     public function delete(Request $request, Categories $category): Response
     {
+        $category->setUrlIcone("");
+
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($category);
             $entityManager->flush();
         }
 
-        return $this->redirect($this->generateUrl('categories_index',['id'=> $id]));
+        return $this->redirect($this->generateUrl('categories_index'));
     }
 }

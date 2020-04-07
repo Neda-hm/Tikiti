@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 
 
 use App\Form\UserType;
@@ -25,10 +26,23 @@ class EntrepriseType extends AbstractType
         
         ->add('user', UserType::class)
 
-            ->add('logo',FileType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ]]);
+        ->add('logo',FileType::class, [
+            'attr' => [
+                'class' => 'form-control'
+            ]
+        ])
+
+        ->add('categorie',EntityType::class, [
+            'class' => Categories::class,
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+            },
+            'choice_label' => 'nom',
+            'attr' => [
+                'class' => 'form-control'
+            ]
+        ]);
 
                 
         }

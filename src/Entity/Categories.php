@@ -6,9 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Entreprise;
+use App\Entity\Categories;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoriesRepository")
+ * @Vich\Uploadable
  */
 class Categories
 {
@@ -18,6 +22,27 @@ class Categories
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $nom;
+
+    /**
+    * @ORM\Column(type="string")
+    */
+   private $urlIcone;
+
+    /**
+    * @Vich\UploadableField(mapping="categorie_icone", fileNameProperty="urlIcone")
+    * @var File
+    */
+   private $icone;
+   /**
+    * @ORM\Column(type="datetime")
+    * @var \DateTime
+    */
+   private $updatedAt;
 
     /**
      * Une catégorie peut avoir plusieur entreprises
@@ -64,6 +89,58 @@ class Categories
         }
 
         return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getUrlIcone(): ?string
+    {
+        return $this->urlIcone;
+    }
+
+    public function setUrlIcone(string $urlIcone): self
+    {
+        $this->urlIcone = $urlIcone;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function setIcone(File $icone = null)
+    {
+        $this->icone = $icone;
+
+        
+        if ($icone) {
+        
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getIcone()
+    {
+        return $this->icone;
     }
 
    

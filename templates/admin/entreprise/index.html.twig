@@ -20,7 +20,7 @@
             <th>ville</th>
             <th>codePostale</th>      
             <th>Logo</th>
-            <th>Catégories</th>
+            <th>Catégorie</th>
             <th>action</th>
         </tr>
     </thead>
@@ -32,7 +32,6 @@
 
       
         {%for userPro in entreprises %}
-         {%for categorie in entreprises %}
           <tr>
             <td>{{ userPro.user.username }}</td>
             <td>{{ userPro.user.email }}</td>
@@ -40,13 +39,8 @@
             <td>{{ userPro.user.adresse }}</td>
             <td>{{ userPro.user.ville }}</td>
             <td>{{ userPro.user.codePostale }}</td>
-             
-          <td>{{ categorie.categories.username }}</td>
-          
-
-
             <td><img src="{{asset('uploads/entreprises/images/'~ userPro.UrlLogo)}}" height="100" width="100"></td>
-            
+            <td>{{ userPro.categorie.nom }}</td>
             <td>
               <div style="display: flex; font-size: large;">
                 <a href="{{ path('entreprise_edit', {'id': userPro.id }) }}" class="btn btn-warning fa fa-edit"></a>
@@ -62,7 +56,6 @@
               </div>
           </td>
        </tr>
-       {% endfor %}
        {% endfor %}
     </tbody>
     

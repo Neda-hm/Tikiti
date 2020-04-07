@@ -77,6 +77,16 @@
               </a>
           </li>
           <li class="sub-menu">
+            <a href="javascript:;" class="{% if 'admin_show' == app.request.get('_route') or 'admin_edit' == app.request.get('_route')%}active{% endif %}">
+              <i class="fa fa-book"></i>
+              <span>Mon compte</span>
+              </a>
+            <ul class="sub" style="{% if 'admin_show' == app.request.get('_route') %}display:block;{% endif %}" >
+              <li><a href="{{ path('admin_show') }}">Affichier</a></li>
+              <li><a href="{{ path('admin_edit') }}">Modifier</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
             <a href="javascript:;" class="{% if 'user_index' == app.request.get('_route') or 'user_new' == app.request.get('_route') %}active{% endif %}" >
               <i class="fa fa-desktop"></i>
               <span>Gestion Des utilisateurs </span>
@@ -98,13 +108,14 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;" class="{% if 'admin_show' == app.request.get('_route') or 'admin_edit' == app.request.get('_route')%}active{% endif %}">
-              <i class="fa fa-book"></i>
-              <span>Mon compte</span>
+            <a href="javascript:;" class="{% if 'categories_index' == app.request.get('_route') or 'categories_new' == app.request.get('_route')%}active{% endif %}"  >
+              <i class="fa fa-cogs"></i>
+              <span>Gestion Des domaines</span>
               </a>
-            <ul class="sub" style="{% if 'admin_show' == app.request.get('_route') %}display:block;{% endif %}" >
-              <li><a href="{{ path('admin_show') }}">Affichier</a></li>
-              <li><a href="{{ path('admin_edit') }}">Modifier</a></li>
+            <ul class="sub" style="{% if 'categories_index' == app.request.get('_route') %}display:block;{% endif %}">
+              <li><a href="{{ path('categories_index') }}">Liste Des domaines </a></li>
+              <li><a href="{{ path('categories_new') }}">Ajouter Des domaines </a></li>
+
             </ul>
           </li>
 

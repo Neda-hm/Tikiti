@@ -6,3 +6,7 @@ vich_uploader:
             uri_prefix:          '%app.path.images_entreprises%'
             upload_destination: '%kernel.project_dir%/public%app.path.images_entreprises%' 
             namer: vich_uploader.namer_uniqid
+        categorie_icone:
+            uri_prefix:          '%app.path.icone_categorie%'
+            upload_destination: '%kernel.project_dir%/public%app.path.icone_categorie%' 
+            namer: vich_uploader.namer_uniqid
