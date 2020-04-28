@@ -31,7 +31,7 @@ class EvenementController extends AbstractController
     public function index(EvenementRepository $evenementRepository, Entreprise $entreprise): Response
     {
         return $this->render('entreprise/evenement/index.html.twig', [
-            'evenements' => $evenementRepository->findAll(),
+            'evenements' => $evenementRepository->findBy(['entreprise' => $entreprise]),
             'entrepriseId' => $entreprise->getId(),
             'entreprise' => $entreprise
         ]);
@@ -85,7 +85,23 @@ class EvenementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $data = $form->getData();
+            $dateD = new \DateTime( $data->getDateDebutTemp());
+            $dateF = new \DateTime($data->getDateFinTemp());
+            if ($dateD > $dateF ) {
+
+                $this->addFlash('error', 'Dete début doit être inférierur à la date fin');
+
+            } else {
+
+                $evenement->setDateDebut(new \DateTime( $data->getDateDebutTemp()));
+                $evenement->setDateFin(new \DateTime($data->getDateFinTemp()));
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($evenement);
+                $entityManager->flush();
+
+            }
 
             return $this->redirectToRoute('evenement_index_front', ['id'=>$evenement->getEntreprise()->getId()]);
         }

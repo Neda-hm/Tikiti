@@ -1,10 +1,38 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-      
-
+        <div class="col-lg-12">
+    <div class="row mt">
+          <!--  DATE PICKERS -->
+        <div id="evenement"><div><label for="evenement_date" class="required"> Votre Date </label>
+                    <div class="input-group input-large" data-date="01/01/2014" data-date-format="mm/dd/yyyy">
+                      <input type="text" class="form-control dpd1 " name="from" id="dateD">
+                      <span class="input-group-addon">à</span>
+                      <input type="text" class="form-control dpd2" name="à"  id="dateF">
+                    </div>
+        </div></div>
+        <div id="evenement"><div><label for="evenement_temp" class="required">Votre Temps Debut (24H) </label>
+                <div class="input-group bootstrap-timepicker">
+                      <input type="text" class="form-control timepicker-24"  id="heureD">
+                      <span class="input-group-btn">
+                        <button class="btn btn-theme04" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                </div>
+        </div></div>
+        <div id="evenement"><div><label for="evenement_tempf" class="required">Votre Temps Fin (24H) </label>
+                <div class="input-group bootstrap-timepicker">
+                      <input type="text" class="form-control timepicker-24"  id="heureF">
+                      <span class="input-group-btn">
+                        <button class="btn btn-theme04" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                </div>
+        </div></div>
+    </div> </div> 
      <div style="font-size: large;">
      <center>
     <button class="btn btn-theme02"><i class="fa fa-check"> Save </i></button></center>
     </div>
 {{ form_end(form) }}
 
+<script>
+
+</script>

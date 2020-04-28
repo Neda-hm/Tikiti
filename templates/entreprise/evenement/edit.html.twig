@@ -1,23 +1,50 @@
 {% extends 'entreprise/userPro.html.twig' %}
 
-{% block title %}Edit Événements{% endblock %}
- 
+{% block stylesheets %}
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-datepicker/css/datepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-daterangepicker/daterangepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-timepicker/compiled/timepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-datetimepicker/datertimepicker.css') }}" />
+
+{% endblock %} 
+
+{% block title %} Evenement{% endblock %}
+
+
+
 {% block body %}
-<div class="col-lg-10">
+    <h1>Modifier événement</h1>
 
-    <h1> Modifier Événements</h1>
+{% include 'entreprise/evenement/_form.html.twig' %}
     
-      <div class="card bg-gray mb-20 d-inline-block col-lg-12" style="max-width: 30rm;">
-      <br>
-<div class="row mt" class="{form"} >
-          <!--  DATE PICKERS -->
-<div class="form-panel">
-    {{ include('entreprise/evenement/_form.html.twig', {'button_label': 'Update'}) }}
-
     
-    {{ include('entreprise/evenement/_delete_form.html.twig') }}
 
-    </div>
-</div>
-</div>
+{% endblock %}
+
+{% block javascripts %}
+
+  <script>
+  $("#dateD").focusout(function(){
+    $('#evenement1_dateDebutTemp').val($(this).val());
+  });
+  $("#dateF").focusout(function(){
+    $('#evenement1_dateFinTemp').val($(this).val());
+  })
+
+   $("#heureD").focusout(function(){
+    $('#evenement1_heureDebut').val($(this).val());
+  })
+  $("#heureF").focusout(function(){
+    $('#evenement1_heureFin').val($(this).val());
+  })
+  $('#evenement1_entreprise').addClass('form-control');
+  </script>
+  <script src="{{ asset('admin/lib/jquery-ui-1.9.2.custom.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
+  <script src="{{ asset('admin/lib/advanced-form-components.js') }}"></script>
+
+
 {% endblock %}

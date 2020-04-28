@@ -19,50 +19,17 @@ class Evenement1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-        ->add('entreprise', EntityType::class, [
-            'class' => Entreprise::class,
-            'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('e')
-                ->leftJoin('e.user', 'u')
-                ->addSelect('u')
-                ->orderBy('u.username', 'ASC');
-            },
-            'choice_label' => 'user.username',
-            'attr' => ['class' => 'form-control']
-
-            
-        ])
             ->add('titre', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     
                 ]
             ])
-            ->add('dateDebut', DateType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    
-                ]
-            ])
-            ->add('dateFin', DateType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    
-                ]
-            ])
-            ->add('heureDebut',TimeType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    
-                ]
-            ])
-            ->add('heureFin', TimeType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    
-                ]
-            ])
+            ->add('dateDebutTemp', HiddenType::class )
+            ->add('dateFinTemp', HiddenType::class)
+            ->add('heureDebut', HiddenType::class )
+            ->add('heureFin', HiddenType::class )
+        
         ;
 
     }
