@@ -26,7 +26,7 @@ class EntrepriseController extends AbstractController
     }
 
     /**
-     * @Route("/", name="entreprise_index", methods={"GET"})
+     * @Route("/", name="admin_index_entreprise", methods={"GET"})
      */
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
@@ -75,7 +75,7 @@ class EntrepriseController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="entreprise_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="admin_entreprise_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Entreprise $entreprise): Response
     {

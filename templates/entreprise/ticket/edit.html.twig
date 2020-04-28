@@ -1,0 +1,52 @@
+{% extends 'entreprise/userPro.html.twig' %}
+{% block body %}
+<div class="col-lg-12"> 
+
+    <h1> Nouveau Ticket</h1>
+<div class="card bg-gray-100 mb-20 d-inline-block col-lg-12 " style="max-width: 29rm;">
+<br>
+          <!--  DATE PICKERS -->
+
+   <h4> Ajouter </h4>
+<div class="form-panel">
+{% for message in app.flashes('error') %}
+    <div class="alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+      {{ include('entreprise/ticket/_form.html.twig') }}
+
+   </div>
+       <!-- /form-panel -->
+
+     </div>
+          <!-- /col-lg-12 -->
+        </div>
+</div> </div>
+    
+{% endblock %}
+
+{% block javascripts %}
+
+  <script src="{{ asset('user/lib/jquery-ui-1.9.2.custom.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('user/lib/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('user/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('user/lib/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
+  <script src="{{ asset('user/lib/advanced-form-components.js') }}"></script>
+
+
+{% endblock %}
+
+
+{% block stylesheets %}
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('user/lib/bootstrap-datepicker/css/datepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('user/lib/bootstrap-daterangepicker/daterangepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('user/lib/bootstrap-timepicker/compiled/timepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('user/lib/bootstrap-datetimepicker/datertimepicker.css') }}" />
+
+{% endblock %} 
+
+
+
+ 

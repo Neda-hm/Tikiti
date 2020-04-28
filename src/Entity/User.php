@@ -3,6 +3,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -70,9 +72,20 @@ class User extends BaseUser
      */
     protected $userPro;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="user")
+    */
+    protected $ticket ;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $api_key;
+
     public function __construct()
     {
         parent::__construct();
+        $this->ticket = new ArrayCollection();
         // your own logic
     }
 
@@ -185,6 +198,49 @@ class User extends BaseUser
     public function setUserPro(?Entreprise $userPro): self
     {
         $this->userPro = $userPro;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ticket[]
+     */
+    public function getTicket(): Collection
+    {
+        return $this->ticket;
+    }
+
+    public function addTicket(Ticket $ticket): self
+    {
+        if (!$this->ticket->contains($ticket)) {
+            $this->ticket[] = $ticket;
+            $ticket->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket): self
+    {
+        if ($this->ticket->contains($ticket)) {
+            $this->ticket->removeElement($ticket);
+            // set the owning side to null (unless already changed)
+            if ($ticket->getUser() === $this) {
+                $ticket->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getApiKey(): ?string
+    {
+        return $this->api_key;
+    }
+
+    public function setApiKey(string $api_key): self
+    {
+        $this->api_key = $api_key;
 
         return $this;
     }

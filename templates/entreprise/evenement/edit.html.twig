@@ -1,0 +1,23 @@
+{% extends 'entreprise/userPro.html.twig' %}
+
+{% block title %}Edit Événements{% endblock %}
+ 
+{% block body %}
+<div class="col-lg-10">
+
+    <h1> Modifier Événements</h1>
+    
+      <div class="card bg-gray mb-20 d-inline-block col-lg-12" style="max-width: 30rm;">
+      <br>
+<div class="row mt" class="{form"} >
+          <!--  DATE PICKERS -->
+<div class="form-panel">
+    {{ include('entreprise/evenement/_form.html.twig', {'button_label': 'Update'}) }}
+
+    
+    {{ include('entreprise/evenement/_delete_form.html.twig') }}
+
+    </div>
+</div>
+</div>
+{% endblock %}

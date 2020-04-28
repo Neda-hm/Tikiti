@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Oumayma
- * Date: 29/05/2018
- * Time: 14:11
- */
+
 
 namespace App\Controller;
 
@@ -21,11 +16,15 @@ class SecurityController extends BaseController
         if ('admin_login' === $requestAttributes->get('_route')) {
             return $this->render('admin/login.html.twig', $data);
         }else {
+            if ('userPro_login' === $requestAttributes->get('_route')) {
+                return $this->render('entreprise/login.html.twig', $data);
+            }else{
+                
             return $this->render('FOSUserBundle:Security:login.html.twig', $data);
         }
-
+        }  
     }
-
+    
     /*public function checkAction()
     {
         echo "INside SecrutityController::checkAction";

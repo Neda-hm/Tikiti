@@ -1,21 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
+{% block title %}   Les  Categories {% endblock %}
 
-{% block title %}New Categories{% endblock %}
 
 {% block body %}
-    <h1> Ajouter Les  Categories</h1>
+    <h1>  Les  Categories</h1>
 
-    <div class="row mt">
-          <div class="col-lg-12">
-          <h2><i class="fa fa-angle-right"></i> Ajouter Entreprise</h2>
-            <div class="form-panel">
+<div class="row mt">
+ <div class="col-lg-12">
+   <h4><i class="fa fa-angle-right"></i> Ajouter </h4>
+<div class="form-panel">
 
-         {{ include('admin/categories/_form.html.twig') }}
-     </div>
+      {{ include('admin/categories/_form.html.twig') }}
+ </div>
        <!-- /form-panel -->
 
      </div>
           <!-- /col-lg-12 -->
         </div>
+    
 
 {% endblock %}

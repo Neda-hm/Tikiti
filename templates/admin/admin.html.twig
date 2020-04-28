@@ -11,8 +11,8 @@
   <title>Tikiti - Admin</title>
 
   <!-- Favicons -->
-  <link href={{ asset('admin/img/favicon.png') }}" rel="icon">
-  <link href={{ asset('admin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ asset('admin/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('admin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('admin/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -20,6 +20,7 @@
   <!--external css-->
   <link href="{{ asset('admin/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
   
+  <script src="{{asset ('admin/lib/jquery/jquery.min.js') }}"></script>
   
 {% block stylesheets %}
 
@@ -86,6 +87,7 @@
               <li><a href="{{ path('admin_edit') }}">Modifier</a></li>
             </ul>
           </li>
+
           <li class="sub-menu">
             <a href="javascript:;" class="{% if 'user_index' == app.request.get('_route') or 'user_new' == app.request.get('_route') %}active{% endif %}" >
               <i class="fa fa-desktop"></i>
@@ -97,14 +99,24 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;" class="{% if 'entreprise_index' == app.request.get('_route') or 'entreprise_new' == app.request.get('_route')%}active{% endif %}"  >
+            <a href="javascript:;" class="{% if 'admin_index_entreprise' == app.request.get('_route') or 'entreprise_new' == app.request.get('_route')%}active{% endif %}"  >
               <i class="fa fa-cogs"></i>
               <span>Gestion Des Entreprises</span>
               </a>
-            <ul class="sub" style="{% if 'entreprise_index' == app.request.get('_route') %}display:block;{% endif %}">
-              <li><a href="{{ path('entreprise_index') }}">Liste Des Entreprises </a></li>
+            <ul class="sub" style="{% if 'admin_index_entreprise' == app.request.get('_route') %}display:block;{% endif %}">
+              <li><a href="{{ path('admin_index_entreprise') }}">Liste Des Entreprises </a></li>
               <li><a href="{{ path('entreprise_new') }}">Ajouter Des Esntreprises </a></li>
 
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;" class="{% if 'ticket_index' == app.request.get('_route') or 'ticket_new' == app.request.get('_route')%}active{% endif %}">
+              <i class="fa fa-book"></i>
+              <span>Ticket</span>
+              </a>
+            <ul class="sub" style="{% if 'ticket_index' == app.request.get('_route') %}display:block;{% endif %}" >
+              <li><a href="{{ path('ticket_index') }}">Liste des réservation </a></li>
+              <li><a href="{{ path('ticket_new') }}">Ajouter Ticket</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -139,7 +151,6 @@
     
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="{{asset ('admin/lib/jquery/jquery.min.js') }}"></script>
 
   <script src="{{asset ('admin/lib/bootstrap/js/bootstrap.min.js')}}"></script>
   <script class="include" type="text/javascript" src="{{asset ('admin/lib/jquery.dcjqaccordion.2.7.js')}}"></script>

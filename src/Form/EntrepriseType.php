@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Entreprise;
+use App\Entity\Ticket;
 use App\Entity\Evenement;
 use App\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
@@ -42,9 +43,11 @@ class EntrepriseType extends AbstractType
             'attr' => [
                 'class' => 'form-control'
             ]
-        ]);
+        ])
 
-                
+       ;
+    
+
         }
 
     public function configureOptions(OptionsResolver $resolver)

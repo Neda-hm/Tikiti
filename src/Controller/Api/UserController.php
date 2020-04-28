@@ -30,6 +30,8 @@ class UserController extends FOSRestController
     {
         $this->encoder = $encoder;
         $this->userRepository = $userRepository;
+        $length = 70;
+        $this->randomString  = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
 
@@ -111,6 +113,7 @@ class UserController extends FOSRestController
                 ->setTel($data['telephone'])
                 ->setVille($data['ville'])
                 ->setCodePostale($data['codePostale'])
+                ->setApiKey(md5($data['username'].$this->randomString))
             ;
     
             try {
@@ -173,7 +176,8 @@ class UserController extends FOSRestController
                         'email' => $user->getEmail(),
                         'tel' => $user->getTel(),
                         'codePostal' => $user->getCodePostale(),
-                        'id' => $user->getId()
+                        'id' => $user->getId(),
+                        'api_key' => $user->getApiKey()
                     ];
                     
                   return new jsonResponse(['data' => $result],200);
@@ -201,6 +205,13 @@ class UserController extends FOSRestController
              * @param UserManagerInterface $userManager
              */
             public function updateUser($id, UserManagerInterface $userManager, Request $request){
+
+                $api_key = $request->get('api_key');
+                $user = $this->userRepository->findOneBy(['api_key' => $api_key]);
+                if ( !$user ) {
+    
+                    return new jsonResponse(["error"=> 'invalid token'],400);
+                }
         
         /*
         // sear user exp 1
@@ -255,6 +266,13 @@ class UserController extends FOSRestController
              * @param UserManagerInterface $userManager
              */
             public function AccountUser($id, UserManagerInterface $userManager, Request $request){
+
+                $api_key = $request->get('api_key');
+                $user = $this->userRepository->findOneBy(['api_key' => $api_key]);
+                if ( !$user ) {
+    
+                    return new jsonResponse(["error"=> 'invalid token'],400);
+                }
 
                 $user = $this->userRepository->find($id);
                 if ( !$user ) {

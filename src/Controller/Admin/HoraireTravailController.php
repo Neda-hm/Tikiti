@@ -82,10 +82,6 @@ class HoraireTravailController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            
-
-
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($this->generateUrl('horaire_index',['id'=> $horaireTravail->getEntreprise()->getId()]));

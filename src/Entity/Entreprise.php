@@ -38,6 +38,11 @@ class Entreprise
     private $event;
 
     /**
+         * @ORM\OneToMany(targetEntity="Ticket", cascade={"remove"}, mappedBy="entreprise")
+        */
+    private $ticket;
+
+    /**
      * Plusieurs entreprises peuvent avoir une catégorie 
      * @ORM\ManyToOne(targetEntity="Categories", inversedBy="entreprise")
     */
@@ -66,6 +71,7 @@ class Entreprise
     {
         $this->event = new ArrayCollection();
         $this->heures = new ArrayCollection();
+        $this->ticket = new ArrayCollection();
     }
     
     public function setLogo(File $UrlLogo = null)
@@ -199,6 +205,38 @@ class Entreprise
 
         return $this;
     }
+
+    /**
+     * @return Collection|Ticket[]
+     */
+    public function getTicket(): Collection
+    {
+        return $this->ticket;
+    }
+
+    public function addTicket(Ticket $ticket): self
+    {
+        if (!$this->ticket->contains($ticket)) {
+            $this->ticket[] = $ticket;
+            $ticket->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket): self
+    {
+        if ($this->ticket->contains($ticket)) {
+            $this->ticket->removeElement($ticket);
+            // set the owning side to null (unless already changed)
+            if ($ticket->getEntreprise() === $this) {
+                $ticket->setEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
 
    
 }

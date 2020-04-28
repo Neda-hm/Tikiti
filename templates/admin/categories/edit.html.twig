@@ -1,15 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
+{% block title %}   Les  Categories {% endblock %}
 
-{% block title %}Edit Categories{% endblock %}
 
 {% block body %}
-    <h1> Modifier la Liste Des Categories</h1>
+    <h1>  Les  Categories</h1>
 
-    <div class="col-lg-12">
+<div class="row mt">
+ <div class="col-lg-12">
+   <h4><i class="fa fa-angle-right"></i> Modifier </h4>
 <div class="form-panel">
-    {{ include('admin/categories/_form.html.twig', {'button_label': 'Update'}) }}
 
-    </div>
-</div>
+      {{ include('admin/categories/_form.html.twig') }}
+ </div>
+       <!-- /form-panel -->
+
+     </div>
+          <!-- /col-lg-12 -->
+        </div>
+    
 
 {% endblock %}

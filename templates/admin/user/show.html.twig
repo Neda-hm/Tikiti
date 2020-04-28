@@ -3,6 +3,7 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
+
     <h2>User</h2>
 
     <table class="table">
@@ -95,5 +96,5 @@
     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
 
 
-    {{ include('admin/user/_delete_form.html.twig') }}
-{% endblock %}
+{{ include('admin/user/_delete_form.html.twig') }}
+{% endblock %}    

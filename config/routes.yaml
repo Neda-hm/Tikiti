@@ -22,3 +22,22 @@ api_controller:
     resource: ../../src/Controller/Api/
     type: annotation
     prefix: /api
+
+entreprise_controller:
+    resource: ../../src/Controller/Entreprise/
+    type: annotation
+    prefix: /entreprise-user
+    
+
+
+userPro_login:
+    path:  /entreprise/login
+    controller: App\Controller\SecurityController::loginAction
+
+userPro_login_check:
+    path:  /entreprise/login_check
+    controller: App\Controller\SecurityController::checkAction
+
+userPro_logout:
+    path:  /entreprise/logout
+    controller: App\Controller\SecurityController::logoutAction
