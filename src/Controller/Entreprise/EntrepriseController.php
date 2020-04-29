@@ -22,7 +22,7 @@ class EntrepriseController extends AbstractController
     }
 
     /**
-     * @Route("/registre", name="entreprise_registre", methods={"GET","POST"})
+     * @Route("/register", name="entreprise_register", methods={"GET","POST"})
      */
     public function registre(Request $request): Response
     {
@@ -45,7 +45,7 @@ class EntrepriseController extends AbstractController
             $entityManager->persist($entreprise);
             $entityManager->flush();
 
-            return $this->redirectToRoute('entreprise_show', ["id" => $entreprise->getId()]);
+            return $this->redirectToRoute('profile_show', ["id" => $entreprise->getId()]);
         }
 
         return $this->render('entreprise/registre.html.twig', [

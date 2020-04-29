@@ -5,28 +5,8 @@
             <div class="g-gradient-primary">
 
                 <div class="col-lg-10"> 
-
-                <div style="position: relative; float: right;">
-                     <a href="{{ path('entreprise_edit', {'id': entreprise.id }) }}" class="btn btn-info btn-icon-split ">
-                    <span class="icon text-black-50">
-                      <i class="fas fa-edit"></i>
-                    </span>
-                    <span class="text"> Edit Profile </span>
-                  </a>
-                     <a href="{{ path('horaire_travail_index_front', {'id': entreprise.id }) }}" class="btn btn-success btn-icon-split">
-                    <span class="icon text-black-50">
-                     <i class="fas fa-clock"></i>
-                    </span>
-                    <span class="text"> Mes Horaires </a>
-                    </span>
-                     <a href="{{ path('evenement_index_front', {'id': entreprise.id }) }}" class="btn btn-primary btn-pills waves-effect waves-themed">
-                    <span class="icon text-black-50">
-                     <i class="far fa-calendar-check"></i>
-                    </span>
-                    <span class="text"> Mes Evenements </a>
-                    </span>
-                </div>
                         <h1>  Mon Profile </h1>
+                        
                     <div class="form-panel">
                         <div class="table-responsive-xl">
                             <img class="img-profile rounded-circle " src="{{asset('uploads/entreprises/images/'~ entreprise.UrlLogo)}}" style="width:200px; height:200px;" > <br>

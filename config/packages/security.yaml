@@ -27,26 +27,13 @@ security:
                 path:           /security/logout
                 target:         /security/login
             anonymous:    true
-
-        userPro:
-            pattern:            /entreprise
-            form_login:
-                provider:       fos_userbundle
-                login_path:     /entreprise/login
-                check_path:     /entreprise/login_check
-                success_handler: redirect.after.login
-            logout:
-                path:           /entreprise/logout
-                target:         /entreprise/login
-            anonymous:    true    
-
-
        
         main:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                success_handler: redirect.after.login
 
             logout:       true
             anonymous:    true
@@ -58,4 +45,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/security/admin/, role: ROLE_ADMIN }
-        - { path: ^/security/userPro/, role: ROLE_USER }
+        - { path: ^/security/entreprise-user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/security/entreprise-user/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/security/entreprise-user/, role: ADMIN_ENTREPRISE }
