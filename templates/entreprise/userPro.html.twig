@@ -65,8 +65,8 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="heading tow" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ path('evenement_new_front', {'id': entreprise.id }) }}">Ajouter article </a>
-            <a class="collapse-item" href="{{ path('evenement_edit_front', {'id': event.id }) }}">Modifier article </a>
+            <a class="collapse-item" href="{{ path('evenement_new_front', {'id': app.user.id }) }}">Ajouter article </a>
+            <a class="collapse-item" href="{{ path('evenement_edit_front', {'id': app.user.id }) }}">Modifier article </a>
           </div>
         </div>
       </li>
@@ -82,8 +82,8 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ path('ticket_show_front', {'id': entreprise.id }) }}"> Nos Tickets </a>
-            <a class="collapse-item" href="{{ path('ticket_edit_front', {'id': entreprise.id }) }}"> Détail Ticket </a>
+            <a class="collapse-item" href="{{ path('ticket_show_front', {'id': app.user.id }) }}"> Nos Tickets </a>
+            <a class="collapse-item" href="{{ path('ticket_edit_front', {'id': app.user.id }) }}"> Détail Ticket </a>
           </div>
         </div>
       </li>
@@ -95,8 +95,8 @@
                 </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ path('horaire_travail_index_front', {'id': entreprise.id }) }}"> Horaire de Travaille </a>
-            <a class="collapse-item" href="{{ path('horaire_travail_new_front', {'id': entreprise.id }) }}"> Ajouter  </a>
+            <a class="collapse-item" href="{{ path('horaire_travail_index_front', {'id': app.user.id }) }}"> Horaire de Travaille </a>
+            <a class="collapse-item" href="{{ path('horaire_travail_new_front', {'id': app.user.id }) }}"> Ajouter  </a>
           </div>
         </div>
             </li>
@@ -133,17 +133,6 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -170,22 +159,22 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-item" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{entreprise.user.Username}}</span>
-                <img class="img-profile rounded-circle"  src="{{asset('uploads/entreprises/images/'~ entreprise.UrlLogo)}}">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{app.user.Username}}</span>
+                <img class="img-profile rounded-circle"  src="{{asset('uploads/entreprises/images/'~ app.user.userPro.UrlLogo)}}">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ path('profile_show', {'id': entreprise.id }) }}">
+                <a class="dropdown-item" href="{{ path('profile_show', {'id': app.user.id }) }}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="{{ path('entreprise_edit', {'id': entreprise.id }) }}">
+                <a class="dropdown-item" href="{{ path('entreprise_edit', {'id': app.user.id }) }}">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings
                 </a>
                
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ path('userPro_logout') }}" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>

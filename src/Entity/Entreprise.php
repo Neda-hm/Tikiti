@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Type;
 use App\Entity\User;
+use App\Entity\Ticket;
 use App\Entity\Evenement;
 use App\Entity\HoraireTravail;
 use App\Entity\Categories;
