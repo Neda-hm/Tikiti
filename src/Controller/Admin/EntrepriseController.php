@@ -26,7 +26,7 @@ class EntrepriseController extends AbstractController
     }
 
     /**
-     * @Route("/", name="admin_index_entreprise", methods={"GET"})
+     * @Route("/", name="entreprise_index", methods={"GET"})
      */
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {

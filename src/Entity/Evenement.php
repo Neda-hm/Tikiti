@@ -2,9 +2,17 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Entreprise;
 use App\Entity\Evenement;
+use App\Entity\Ticket;
+use App\Entity\HoraireTravail;
+use App\Entity\Categories;
+
+
+
 
 
 

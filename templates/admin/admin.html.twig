@@ -99,12 +99,12 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;" class="{% if 'admin_index_entreprise' == app.request.get('_route') or 'entreprise_new' == app.request.get('_route')%}active{% endif %}"  >
+            <a href="javascript:;" class="{% if 'entreprise_index' == app.request.get('_route') or 'entreprise_new' == app.request.get('_route')%}active{% endif %}"  >
               <i class="fa fa-cogs"></i>
               <span>Gestion Des Entreprises</span>
               </a>
-            <ul class="sub" style="{% if 'admin_index_entreprise' == app.request.get('_route') %}display:block;{% endif %}">
-              <li><a href="{{ path('admin_index_entreprise') }}">Liste Des Entreprises </a></li>
+            <ul class="sub" style="{% if 'entreprise_index' == app.request.get('_route') %}display:block;{% endif %}">
+              <li><a href="{{ path('entreprise_index') }}">Liste Des Entreprises </a></li>
               <li><a href="{{ path('entreprise_new') }}">Ajouter Des Esntreprises </a></li>
 
             </ul>

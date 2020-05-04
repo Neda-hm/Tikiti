@@ -77,7 +77,7 @@ class EntrepriseController extends AbstractController
 
     
     /**
-     * @Route("/{id}/edit", name="entreprise_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="entreprise_edit_front", methods={"GET","POST"})
      */
     public function edit(Request $request, entreprise $entreprise): Response
     {
@@ -93,7 +93,7 @@ class EntrepriseController extends AbstractController
            // $entreprise->setLng($data->getLng());
             
 
-            return $this->redirectToRoute('entreprise_index');
+            return $this->redirectToRoute('entreprise_index_front');
 
         }
 
@@ -103,7 +103,7 @@ class EntrepriseController extends AbstractController
         ]);
     }
  /**
-     * @Route("/index", name="entreprise_index", methods={"GET"})
+     * @Route("/index", name="entreprise_index_front", methods={"GET"})
      */
     public function index(EntrepriseRepository $EntrepriseRepository): Response
     {

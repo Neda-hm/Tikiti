@@ -23,11 +23,11 @@
         <tbody>
         {% for ticket in tickets %}
             <tr>
-                <td>{{ ticket.num }}</td>
-                <td>{{ ticket.entreprise.user.username }}</td>
-                <td>{{ ticket.user.prenom }} {{ ticket.user.nom }}</td>
-                <td>{{ ticket.date ? ticket.date|date('Y-m-d') : '' }}</td>
-                <td>{{ ticket.heure }}</td>
+                <td>{{ ticket.num |default('undefined')}}</td>
+                <td>{{ ticket.entreprise.user.username |default('undefined')}}</td>
+                <td>{{ ticket.user.prenom|default('undefined') }} {{ ticket.user.nom |default('undefined')}}</td>
+                <td>{{ ticket.date ? ticket.date|date('Y-m-d') : ''|default('undefined') }}</td>
+                <td>{{ ticket.heure|default('undefined') }}</td>
             <td>
                 <div style="display: flex; font-size: large;">
                     <a href="{{ path('ticket_edit', {'id': ticket.id}) }}" class="btn btn-warning fa fa-edit "></a>
