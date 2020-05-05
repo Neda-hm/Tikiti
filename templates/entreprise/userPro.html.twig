@@ -82,13 +82,12 @@
               </a>
               <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                  <h6 class="collapse-header">Custom Utilities:</h6> 
-                  <div class="bg-white py-2 collapse-inner rounded">
+                  
                       <a class="collapse-item" href="{{ path('ticket_show_front', {'id': app.user.id }) }}"> Nos Tickets </a>
                       <a class="collapse-item" href="{{ path('ticket_edit_front', {'id': app.user.id }) }}"> Détail Ticket </a>
                   </div>
                 </div>
-              </div>
+             
             </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -101,10 +100,10 @@
         </a>
         <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="{{ path('horaire_travail_index_front', {'id': app.user.id }) }}"> Horaire de Travaille </a>
             <a class="collapse-item" href="{{ path('horaire_travail_new_front', {'id': app.user.id }) }}"> Ajouter  </a>
           </div>
+        </div>
       </li>
 
       <li class="nav-item">
