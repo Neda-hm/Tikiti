@@ -27,4 +27,10 @@ entreprise_controller:
     resource: ../../src/Controller/Entreprise/
     type: annotation
     prefix: /entreprise-user
+
+fos_user_register:
+    path: /entreprise/register
+    controller: App\Controller\Entreprise\RegistrationController::register
+
+
     

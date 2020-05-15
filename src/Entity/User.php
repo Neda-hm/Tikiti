@@ -67,7 +67,7 @@ class User extends BaseUser
     protected $tel;
 
     /**
-     * @ORM\OneToOne(targetEntity="Entreprise", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="Entreprise", inversedBy="user", cascade={"all"})
      * @ORM\JoinColumn(name="entreprise_id", referencedColumnName="id", nullable=true)
      */
     protected $userPro;
