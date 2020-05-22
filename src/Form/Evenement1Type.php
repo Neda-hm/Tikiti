@@ -8,8 +8,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Entreprise;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
@@ -25,10 +23,30 @@ class Evenement1Type extends AbstractType
                     
                 ]
             ])
-            ->add('dateDebutTemp', HiddenType::class )
-            ->add('dateFinTemp', HiddenType::class)
-            ->add('heureDebut', HiddenType::class )
-            ->add('heureFin', HiddenType::class )
+            ->add('dateDebutTemp', HiddenType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    
+                ]
+            ])
+            ->add('dateFinTemp', HiddenType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    
+                ]
+            ])
+            ->add('heureDebut', HiddenType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    
+                ]
+            ])
+            ->add('heureFin', HiddenType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    
+                ]
+            ])
         
         ;
 

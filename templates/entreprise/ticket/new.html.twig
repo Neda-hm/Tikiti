@@ -14,22 +14,18 @@
 {% block body %}
 
 <div class="col-lg-12">
-    <h1> Nouveau Ticket</h1>
-
+<div class="text-primary">
+    <h2> Nouveau Ticket</h2>
+</div>
       <div class="card bg-gray mb-20 d-inline-block col-lg-12" style="max-width: 30rm;">
       <br>
-<div class="row mt" class="{form"} >
-          <!--  DATE PICKERS -->
-
- <div class="col-lg-12">
-   <h4><i class="fa fa-angle-right"></i> Ajouter </h4>
 <div class="form-panel">
 {% for message in app.flashes('error') %}
     <div class="alert-danger">
         {{ message }}
     </div>
 {% endfor %}
-      {{ include('admin/ticket/_form.html.twig') }}
+      {{ include('entreprise/ticket/_form.html.twig') }}
 
    </div>
        <!-- /form-panel -->

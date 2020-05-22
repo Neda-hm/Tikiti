@@ -34,7 +34,7 @@
                     <td>{{ userPro.user.ville|default('undefined') }}</td>
                     <td>{{ userPro.user.codePostale|default('undefined') }}</td>
                     <td><img src="{{asset('uploads/entreprises/images/'~ userPro.UrlLogo|default('undefined'))}}" height="100" width="100"></td>
-                    <td>{{ userPro.categorie.nom }}</td>
+                    <td>{{ userPro.categorie.nom|default('undefined') }}</td>
                     <td>
                       <div style="display: flex; font-size: large;">
                         <a href="{{ path('admin_entreprise_edit', {'id': userPro.id }) }}" class="btn btn-warning fa fa-edit"></a>

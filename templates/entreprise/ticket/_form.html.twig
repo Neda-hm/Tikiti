@@ -1,20 +1,31 @@
 {{ form_start(form) }}
         {{ form_row(form.user, { 'attr': {'class':'form-control' }} ) }}
-        {{ form_row(form.entreprise, { 'attr': {'class':'form-control' }}) }}
-       {{ form_row(form.heure) }}
-       {{ form_row(form.dateTemp) }}
+       {{ form_row(form.heure, { 'attr': {'class':'form-control' }}) }}
+       {{ form_row(form.dateTemp, { 'attr': {'class':'form-control' }}) }}
      
+{% block stylesheets %}
 
-         <div class="col-lg-12">
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-datepicker/css/datepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-daterangepicker/daterangepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-timepicker/compiled/timepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-datetimepicker/datertimepicker.css') }}" />
+
+{% endblock %} 
+
+
+  <div class="col-lg-12">
     <div class="row mt">
-          <!--  DATE PICKERS -->
+    
                 <div id="ticket"><div>
                 <label for="ticket_date" class="required"> Votre Date </label>
                     <div class="input-group input-large" data-date="01/01/2014" data-date-format="mm/dd/yyyy">
                       <input type="text" class="form-control dpd1 " name="from" id="ticket_Date">
                       <span class="input-group-btn">
+                      <button class="btn btn-theme04" type="button"><i class="fa fa-calendar-check-o"></i></button>
+
                     </div>
                    </div>
+                   
           <div id="ticket"><div><label for="ticket_heure" class="required">Votre Heure </label>
                 <div class="input-group bootstrap-timepicker">
                       <input type="text" class="form-control timepicker-24"  id="ticket_heure_custom">
@@ -23,19 +34,26 @@
                         </span>
                 </div>
         </div>
-        </div>
-       </div>
-     <div style="font-size: large;"> <br>
+        <br>
      <center>
 <button  class="btn btn-outline-info"> Save </button>
-   </center> </div>
+<br>
+   </center>
+   <br> </div>
+</div>
+ {% block javascripts %}
 
+
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
 <script>
 
   $('#ticket_heure_custom').on("change", function(){
-    alert('ok')
+ 
     $('#ticket_heure').val($('#ticket_heure_custom').val()) ;
     $('#ticket_dateTemp').val($('#ticket_Date').val());
   })
 
 </script>
+{% endblock %}

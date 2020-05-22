@@ -7,6 +7,7 @@
 <div class="card bg-gray-100 mb-20 d-inline-block col-lg-12 " style="max-width: 29rm;">
 <br>
             <h2><i class="fa fa-angle-right"></i> Liste des Réservations </h2> <br>
+            
     <div class="form-panel">
     <div class="table-responsive-xl">
             <table class="table">
@@ -24,7 +25,7 @@
         {% for ticket in tickets %}
             <tr>
                 <td>{{ ticket.num }}</td>
-                <td>{{ ticket.entreprise.user.username }}</td>
+                <td>{{ ticket.user.username }}</td>
                 <td>{{ ticket.user.prenom }} {{ ticket.user.nom }}</td>
                 <td>{{ ticket.date ? ticket.date|date('Y-m-d') : '' }}</td>
                 <td>{{ ticket.heure }}</td>
@@ -43,7 +44,7 @@
                        
              {% endfor %}
              <div style="display: flex; font-size: large;">
-             <a href="{{ path('ticket_new_front') }}" class="btn btn-outline-success"> + Ajouter </a>
+             <a href="{{ path('ticket_new_front', {'id': app.user.userPro.id }) }}" class="btn btn-outline-success"> + Ajouter </a>
              </div>   <br> 
         </tbody>
     </table>

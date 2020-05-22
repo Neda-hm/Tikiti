@@ -19,16 +19,7 @@ class Ticket1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('entreprise', EntityType::class, [
-            'class' => Entreprise::class,
-            'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('e')
-                ->leftJoin('e.user', 'u')
-                ->addSelect('u')
-                ->orderBy('u.username', 'ASC');
-            },
-            'choice_label' => 'user.username'
-        ])
+       
            
             ->add('user', EntityType::class, [
                 'class' => User::class,
@@ -42,8 +33,8 @@ class Ticket1Type extends AbstractType
                 'choice_label' => 'username'
             ])
 
-            ->add('dateTemp', HiddenType::class )
-            ->add('heure', HiddenType::class )
+            ->add('dateTemp', HiddenType::class)
+            ->add('heure', HiddenType::class)
 
         ;
     }

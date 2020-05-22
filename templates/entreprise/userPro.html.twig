@@ -1,275 +1,171 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title> TIKITI-Entreprise </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="{{ asset('entreprise/assets/images/icon/favicon.ico')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/font-awesome.min.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/themify-icons.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/metisMenu.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/slicknav.min.css')}}">
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 
-  <title> Tikiti - Entreprise </title>
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/typography.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/default-css.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/styles.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/responsive.css')}}">
 
-        {% block stylesheets %}
-        {% endblock %}
-        <!-- Custom fonts for this template-->
-        <link href="{{ asset('user/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-  <!--external css-->
-  <link href="{{ asset('admin/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-        
-        <!-- Custom styles for this template-->
-        <link href="{{ asset('user/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+<script src="{{ asset('entreprise/assets/js/vendor/modernizr-2.8.3.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 </head>
+<body class="body-bg" data-gr-c-s-loaded="true">
+<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+<div id="preloader">
+<div class="loader"></div>
+</div>
 
 
+<div class="horizontal-main-wrapper">
 
-<body id="page-top">
- <!-- **********************************************************************************************************************************************************
-        TOP BAR CONTENT & NOTIFICATIONS
-        *********************************************************************************************************************************************************** -->
-  
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<div class="mainheader-area">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-3">
+     <h4> <a href="{{ path('entreprise_index_front')}}" class="logo">TiKi Ti Bienvenu  </a> </h4>
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+</div>
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-text mx-3"> Bienvenue ! </div>
-        </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+<div class="col-md-9 clearfix text-right">
+<div class="d-md-inline-block d-block mr-md-4">
+<ul class="notification-area">
+<li id="full-view"><i class="ti-fullscreen"></i></li>
+<li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+<li class="dropdown">
 
 
-      <li class="nav-item active">
-        <a class="nav-link"  href="{{ path('entreprise_index_front') }}" >
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-        
-        
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+</li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
+</ul>
+</div>
+<div class="clearfix d-md-inline-block d-block">
+<div class="user-profile m-0"><h4>{{app.user.username}} </h4>   
+<img class="avatar user-thumb" src="{{ asset('uploads/entreprises/images/'~ app.user.userPro.UrlLogo) }}" alt="image">
+<h4 class="user-name dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></h4>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="{{ path('profile_show', {'id': app.user.userPro.id })}}">Profile</a>
+<a class="dropdown-item" href="{{ path('entreprise_edit_front', {'id': app.user.userPro.id })}}">Paramètre</a>
 
-    <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-              <i class="fas fa-fw fa-cog"></i>
-              <span>Mes actualitées</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="{{ path('evenement_new_front', {'id': app.user.id }) }}">Ajouter article </a>
-            <a class="collapse-item" href= "{{ path('evenement_edit_front', {'id': app.user.id }) }}">Modifier article </a>
-          </div>
-            </div>
-          </li>
+<a class="dropdown-item" href="{{ path('fos_user_security_logout')}}">Log Out</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
- 
-      <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Nos réservations</span>
-              </a>
-              <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                  
-                      <a class="collapse-item" href="{{ path('ticket_show_front', {'id': app.user.id }) }}"> Nos Tickets </a>
-                      <a class="collapse-item" href="{{ path('ticket_edit_front', {'id': app.user.id }) }}"> Détail Ticket </a>
-                  </div>
-                </div>
-             
-            </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-    
+<div class="header-area header-bottom">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-9  d-none d-lg-block">
+<div class="horizontal-menu">
+<nav>
+<ul id="nav_menu">
+<li>
+<a href="{{ path('entreprise_index_front')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
+</li>
 
-        <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Les Horaires</span>
-        </a>
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ path('horaire_travail_index_front', {'id': app.user.id }) }}"> Horaire de Travaille </a>
-            <a class="collapse-item" href="{{ path('horaire_travail_new_front', {'id': app.user.id }) }}"> Ajouter  </a>
-          </div>
-        </div>
-      </li>
+<li>
+<a href="javascript:void(0)"><i class="fa fa-calendar-check-o"></i><span>Actualité</span></a>
+<ul class="submenu">
+<li><a href="{{ path('evenement_index_front' , {'id': app.user.userPro.id })  }}">Nos actualités</a></li>
+<li><a href="{{ path('evenement_new_front' , {'id': app.user.userPro.id })  }}">Ajouter actualité</a></li>
+</ul>
+</li>
+<li>
+<a href="javascript:void(0)"><i class="fa fa-ticket"></i><span>Réservation</span></a>
+<ul class="submenu">
+<li><a href="{{ path('ticket_index_front' , {'id': app.user.userPro.id })  }}">Nos Réservation</a></li>
+<li><a href="{{ path('ticket_new_front' , {'id': app.user.userPro.id })  }}">Ajouter Réservation</a></li>
+</ul>
+</li>
+<li>
+<a href="javascript:void(0)"><i class="ti-time"></i><span>Horaire de Travail</span></a>
+<ul class="submenu">
+<li><a href="{{ path('horaire_travail_index_front' , {'id': app.user.userPro.id  })  }}">Horaire de Travail</a></li>
+<li><a href="{{ path('horaire_travail_new_front' , {'id': app.user.userPro.id  })  }}">ajouter Horaire de Travail </a></li>
+</ul>
+</li>
+<li><a href="{{ path('map_front')  }}"><i class="ti-map-alt"></i> <span>maps</span></a></li>
+</ul>
+</nav>
+</div>
+</div>
 
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span> Map  </span></a>
-      </li>
-      
 
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
-      <div id="content">
-
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-item" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{app.user.Username}}</span>
-                <img class="img-profile rounded-circle"  src="{{asset('uploads/entreprises/images/'~ app.user.userPro.UrlLogo)}}">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ path('profile_show', {'id': app.user.id }) }}">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="{{ path('entreprise_edit_front', {'id': app.user.id }) }}">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-               
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
-</div> 
-        </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
+<div class="col-12 d-block d-lg-none">
+<div id="mobile_menu"></div>
+</div>
+</div>
+</div>
+</div>
             {% block body %}{% endblock %}
-        <!-- /row -->
-      </section>
-    </section>
-    <!--main content end-->
-        <!-- /.container-fluid -->
 
-      </div>
-      
-    </div>
-    <!-- End of Content Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+{%block JavaScript %}
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<script src="{{ asset('entreprise/assets/js/vendor/jquery-2.2.4.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 
- 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{asset ('user/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset ('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('entreprise/assets/js/popper.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/bootstrap.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/owl.carousel.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/metisMenu.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/jquery.slimscroll.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/jquery.slicknav.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset ('user/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset ('user/js/sb-admin-2.min.js')}}"></script>
+<script src="https://code.highcharts.com/highcharts.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="https://code.highcharts.com/modules/exporting.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="https://code.highcharts.com/modules/export-data.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
 
-  {#<!-- Page level plugins -->
-  <script src="{{asset ('user/vendor/chart.js/Chart.min.js')}}"></script>
+<script src="https://www.amcharts.com/lib/3/amcharts.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="https://www.amcharts.com/lib/3/ammap.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="{{asset ('user/js/demo/chart-area-demo.js')}}"></script>
-  <script src="{{asset ('user/js/demo/chart-pie-demo.js')}}"></script>
-#}
+<script src="{{ asset('entreprise/assets/js/line-chart.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 
-  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
-{% block javascripts %}{% endblock %}
-</body>
+<script src="{{ asset('entreprise/assets/js/pie-chart.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+
+<script src="{{ asset('entreprise/assets/js/bar-chart.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+
+<script src="{{ asset('entreprise/assets/js/maps.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+
+<script src="{{ asset('entreprise/assets/js/plugins.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/scripts.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="7e4d286ac804527fab262e63-text/javascript"></script>
+<script type="7e4d286ac804527fab262e63-text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7e4d286ac804527fab262e63-|49" defer=""></script></body>
+{%endblock%}
 
 </html>

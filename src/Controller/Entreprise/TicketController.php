@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TicketController extends AbstractController
 {
     /**
-     * @Route("/", name="ticket_index_front", methods={"GET"})
+     * @Route("/{id}", name="ticket_index_front", methods={"GET"})
      */
     public function index(TicketRepository $ticketRepository): Response
     {
@@ -26,7 +26,7 @@ class TicketController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="ticket_new_front", methods={"GET","POST"})
+     * @Route("/new/{id}", name="ticket_new_front", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {

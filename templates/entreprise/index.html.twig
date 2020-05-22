@@ -1,275 +1,85 @@
 {% extends 'entreprise/userPro.html.twig' %}
 
 {% block body %}
-     <div class="container">
-     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Traffic de Réservation </h6>
-                  
-                </div>
-
-            <div class="card-body">
-                    
-                <style>
-                #chartdiv {
-                width: 100%;
-                height: 500px;
-                }
-                </style></div>
-                <div id="chartdiv"></div>
-
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Traffic de Visiteur </h6>
-                
-                      <div id="container" style="width: 100%; height: 700%"></div>
-                                    </div>
+<html>
+<body>
+<div class="main-content" style="min-height: 10px;">
 
 
-
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Map</h6>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<style>
-      /* Set the responsive map size here */
-      #mapDiv {
-        min-height:100px; 
-        max-height:500px; 
-      }
-    </style>
-
-        {% block stylesheets %}
-
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.13/esri/css/esri.css">   
-    <link rel="stylesheet" type="text/css" href="http://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css"> 
-        {% endblock %}
-
-
-    <div class="container" style="padding:15px;">
-      <div class="row">
-        <div class="col-xs-12">
-          <h5>Title</h5>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div id="mapDiv"></div>
-        </div>
-        <div class="col-xs-4">                
-          <h5>Legend</h5>
-          <p>content</p>
-          <p>content</p>
-          <p>content</p>
-        </div>
-      </div>
-    </div>
+<div class="page-title-area">
+<div class="row align-items-center">
+<div class="col-sm-6">
+<div class="breadcrumbs-area clearfix">
+<h4 class="page-title pull-left">Dashboard</h4>
+<ul class="breadcrumbs pull-left">
+<li><a href="{{ path('entreprise_index_front') }}">Home</a></li>
+<li><span>Dashboard</span></li>
+</ul>
+</div>
 </div>
 
 </div>
+</div>
 
-{% endblock%}
+<div class="main-content-inner">
 
+<div class="sales-report-area mt-5 mb-5">
+<div class="row">
+<div class="col-md-4">
+<div class="single-report mb-xs-30"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+<div class="s-report-inner pr--20 pt--30 mb-3">
+<div class="icon"><i class="fa fa-ticket"></i></div>
+<div class="s-report-title d-flex justify-content-between">
+<h4 class="header-title mb-0">Nos Réservation</h4>
+<p>24 H</p>
+</div>
+<div class="d-flex justify-content-between pb-2">
+<h2>40%</h2>
+</div>
+</div>
+<canvas id="coin_sales1" height="206" width="622" class="chartjs-render-monitor" style="display: block; width: 311px; height: 103px;"></canvas>
+</div>
+</div>
+<div class="col-md-4">
+<div class="single-report mb-xs-30">
+<div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+<div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+<div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0">
+</div></div>
+<div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+<div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 
+<div class="s-report-inner pr--20 pt--30 mb-3">
+<div class="icon"><i class="fa fa-calendar-check-o"></i></div>
+<div class="s-report-title d-flex justify-content-between">
+<h4 class="header-title mb-0">Nos Evenments </h4>
+<p>24 H</p>
+</div>
+<div class="d-flex justify-content-between pb-2">
+<h2>60%</h2>
+</div>
+</div>
+<canvas id="coin_sales2" height="206" width="622" class="chartjs-render-monitor" style="display: block; width: 311px; height: 103px;"></canvas>
+ </div>
+</div>
+<div class="col-md-4">
+<div class="single-report">
+<div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+<div class="s-report-inner pr--20 pt--30 mb-3">
+<div class="icon"><i class="fa fa-users"></i></div>
+<div class="s-report-title d-flex justify-content-between">
+<h4 class="header-title mb-0">Nos Clients</h4>
+<p>24 H</p>
+</div>
+<div class="d-flex justify-content-between pb-2">
+<h2>70%</h2>
+</div>
+</div>
+<canvas id="coin_sales3" height="206" width="622" class="chartjs-render-monitor" style="display: block; width: 311px; height: 103px;"></canvas>
+
+</body>
+</html>
+    {% endblock %}
 {% block javascripts %}
-<!-- map -->
-
-    <script type="text/javascript">
-        var package_path = "//esri.github.com/bootstrap-map-js/src/js";
-        var dojoConfig = {
-            packages: [{
-                name: "application",
-                location: package_path
-            }]
-        };
-    </script>
-    <script src="//js.arcgis.com/3.13compact"></script>
-    <script>
-      require(["application/bootstrapmap", "dojo/domReady!"], 
-        function(BootstrapMap) {
-          // Get a reference to the ArcGIS Map class
-          var map = BootstrapMap.create("mapDiv",{
-            basemap:"national-geographic",
-            center:[-122.45,37.77],
-            zoom:12,
-            scrollWheelZoom: false
-          });
-      });
-    </script>
-
-    <!-- jQuery (for Bootstrap's JavaScript plugins). NOTE: You can also use pure Dojo. See examples. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all  plugins or individual files as needed -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!-- pie -->
- <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
-      <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
   
-    <script>
-        <!-- chart code will be here -->
-    var data = [
-    {x: "Visiteur", value: 223553265},
-    {x: "Autho", value: 38929319},
-];
-anychart.onDocumentReady(function() {
-
-  // set the data
-  var data = [
-      {x: "White", value: 223553265},
-      {x: "Black or African American", value: 38929319},
-  ];
-
-  // create the chart
-  var chart = anychart.pie();
-
-
-  // add the data
-  chart.data(data);
-
-  // display the chart in the container
-  chart.container('container');
-  chart.draw();
-
-});
-    </script>
-
-
-
-
-
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-<!-- Chart code -->
-<script>
-am4core.ready(function() {
-
-// Themes begin
-am4core.useTheme(am4themes_animated);
-// Themes end
-
-// Create chart instance
-var chart = am4core.create("chartdiv", am4charts.XYChart);
-
-//
-
-// Increase contrast by taking evey second color
-chart.colors.step = 2;
-
-// Add data
-chart.data = generateChartData();
-
-// Create axes
-var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-dateAxis.renderer.minGridDistance = 50;
-
-// Create series
-function createAxisAndSeries(field, name, opposite, bullet) {
-  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-  if(chart.yAxes.indexOf(valueAxis) != 0){
-  	valueAxis.syncWithAxis = chart.yAxes.getIndex(0);
-  }
-  
-  var series = chart.series.push(new am4charts.LineSeries());
-  series.dataFields.valueY = field;
-  series.dataFields.dateX = "date";
-  series.strokeWidth = 2;
-  series.yAxis = valueAxis;
-  series.name = name;
-  series.tooltipText = "{name}: [bold]{valueY}[/]";
-  series.tensionX = 0.8;
-  series.showOnInit = true;
-  
-  var interfaceColors = new am4core.InterfaceColorSet();
-  
-  switch(bullet) {
-    case "triangle":
-      var bullet = series.bullets.push(new am4charts.Bullet());
-      bullet.width = 12;
-      bullet.height = 12;
-      bullet.horizontalCenter = "middle";
-      bullet.verticalCenter = "middle";
-      
-      var triangle = bullet.createChild(am4core.Triangle);
-      triangle.stroke = interfaceColors.getFor("background");
-      triangle.strokeWidth = 2;
-      triangle.direction = "top";
-      triangle.width = 12;
-      triangle.height = 12;
-      break;
-    case "rectangle":
-      var bullet = series.bullets.push(new am4charts.Bullet());
-      bullet.width = 10;
-      bullet.height = 10;
-      bullet.horizontalCenter = "middle";
-      bullet.verticalCenter = "middle";
-      
-      var rectangle = bullet.createChild(am4core.Rectangle);
-      rectangle.stroke = interfaceColors.getFor("background");
-      rectangle.strokeWidth = 2;
-      rectangle.width = 10;
-      rectangle.height = 10;
-      break;
-    default:
-      var bullet = series.bullets.push(new am4charts.CircleBullet());
-      bullet.circle.stroke = interfaceColors.getFor("background");
-      bullet.circle.strokeWidth = 2;
-      break;
-  }
-  
-  valueAxis.renderer.line.strokeOpacity = 1;
-  valueAxis.renderer.line.strokeWidth = 2;
-  valueAxis.renderer.line.stroke = series.stroke;
-  valueAxis.renderer.labels.template.fill = series.stroke;
-  valueAxis.renderer.opposite = opposite;
-}
-
-createAxisAndSeries("visits", "Visits", false, "circle");
-createAxisAndSeries("views", "Views", true, "triangle");
-createAxisAndSeries("hits", "Hits", true, "rectangle");
-
-// Add legend
-chart.legend = new am4charts.Legend();
-
-// Add cursor
-chart.cursor = new am4charts.XYCursor();
-
-// generate some random data, quite different range
-function generateChartData() {
-  var chartData = [];
-  var firstDate = new Date();
-  firstDate.setDate(firstDate.getDate() - 100);
-  firstDate.setHours(0, 0, 0, 0);
-
-  var visits = 1600;
-  var hits = 2900;
-  var views = 8700;
-
-  for (var i = 0; i < 15; i++) {
-    // we create date objects here. In your data, you can have date strings
-    // and then set format of your dates using chart.dataDateFormat property,
-    // however when possible, use date objects, as this will speed up chart rendering.
-    var newDate = new Date(firstDate);
-    newDate.setDate(newDate.getDate() + i);
-
-    visits += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
-    hits += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
-    views += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
-
-    chartData.push({
-      date: newDate,
-      visits: visits,
-      hits: hits,
-      views: views
-    });
-  }
-  return chartData;
-}
-
-}); // end am4core.ready()
-</script>
-
-
-
-
-
     {% endblock %}

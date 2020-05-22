@@ -1,77 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Login - srtdash</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="{{ asset('entreprise/assets/images/icon/favicon.ico')}}">
+        {% block stylesheets %}
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/font-awesome.min.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/themify-icons.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/metisMenu.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/slicknav.min.css')}}">
 
-  <title> TIKITI - Login</title>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 
-  <!-- Custom fonts for this template-->
-  <link href="{{ asset ('user/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-  
-  {% block stylesheets %}
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  {% endblock %}
-  <!-- Custom styles for this template-->
-  <link href="{{asset('user/css/sb-admin-2.min.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/typography.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/default-css.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/styles.css')}}">
+<link rel="stylesheet" href="{{ asset('entreprise/assets/css/responsive.css')}}">
+{% endblock %}
 
+<script src="{{ asset('entreprise/assets/js/vendor/modernizr-2.8.3.min.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
 </head>
+<body>
+<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-<body class="bg-gradient-primary">
+<div id="preloader">
+<div class="loader"></div>
+</div>
 
-  <div class="container">
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">'
-    
-      <div class="col-xl-10 col-lg-12 col-md-9">
-
-    
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              
-              <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Bienvenu</h1>
-                  </div>
-    {{ include('@FOSUser/Security/login_content.html.twig') }}
+<div class="login-area login-s2">
+<div class="container">
+<div class="login-box ptb--100">
+<div class="login-form-head">
+<h4>Login</h4>
+</div>
+<div class="login-form-body">
+{{ include('@FOSUser/Security/login_content.html.twig') }}
 <hr>
-                  <div class="text-center">
-                    <a class="small" href="{{ path('userPro_motdepasseoublie') }}">Mot De Passe Oubliée</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="{{ path('entreprise_register') }}">Create un compte </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="row mb-4 rmber-area">
+<div class="col-6">
+<div class="custom-control custom-checkbox mr-sm-2">
+<input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+<label class="custom-control-label" for="customControlAutosizing">Remember Me</label>
+</div>
+</div>
 
-     
-    </div>
+</div>
 
-  </div>
+<div class="form-footer text-center mt-5">
+<p class="text-muted">Tu n'ai pas de compte? <a href="register.html">Inscrit vous !</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+{%block JavaScript %}
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="{{ asset('entreprise/assets/js/vendor/jquery-2.2.4.min.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+<script src="{{ asset('entreprise/assets/js/popper.min.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/bootstrap.min.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/owl.carousel.min.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/metisMenu.min.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
+<script src=""{{ asset('entreprise/assets/js/jquery.slimscroll.min.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
+<script src=""{{ asset('entreprise/assets/js/jquery.slicknav.min.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
 
-</body>
+<script src="{{ asset('entreprise/assets/js/plugins.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
+<script src="{{ asset('entreprise/assets/js/scripts.js')}}" type="1596923c90365329e1141b52-text/javascript"></script>
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="1596923c90365329e1141b52-text/javascript"></script>
+<script type="1596923c90365329e1141b52-text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="1596923c90365329e1141b52-|49" defer=""></script></body>
+
+{% endblock %}
 </html>
-

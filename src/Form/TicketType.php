@@ -43,8 +43,16 @@ class TicketType extends AbstractType
                 'choice_label' => 'username'
             ])
 
-            ->add('dateTemp', HiddenType::class )
-            ->add('heure', HiddenType::class )
+            ->add('dateTemp', HiddenType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('heure', HiddenType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
 
         ;
     }

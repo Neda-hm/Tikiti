@@ -5,6 +5,8 @@ namespace App\Controller\Entreprise;
 use App\Entity\Evenement;
 use App\Entity\Entreprise;
 use App\Form\Evenement1Type;
+use App\Entity\EntrepriseType;
+
 use App\Repository\EvenementRepository;
 use App\Repository\EntrepriseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +28,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="evenement_index_front", methods={"GET"})
+     * @Route("/index/{id}", name="evenement_index_front", methods={"GET"})
      */
     public function index(EvenementRepository $evenementRepository, Entreprise $entreprise): Response
     {

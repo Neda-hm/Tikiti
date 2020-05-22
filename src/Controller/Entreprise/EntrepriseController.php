@@ -21,48 +21,6 @@ class EntrepriseController extends AbstractController
         $this->encoder = $encoder;
     }
 
-    /**
-     * @Route("/register", name="entreprise_register", methods={"GET","POST"})
-     */
-    public function registre(Request $request): Response
-    {
-        $entreprise = new Entreprise();
-        $form = $this->createForm(EntrepriseType::class, $entreprise);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-
-            $data = $form->getData();
-            $plainPassword = $data->getUser()->getPassword();
-            $encoded = $this->encoder->encodePassword($entreprise->getUser(), $plainPassword);
-            $entreprise->getUser()->setPassword($encoded);
-            $entreprise->getUser()->AddRole('ADMIN_ENTREPRISE');        
-
-            $entityManager->persist($entreprise);
-            $entityManager->flush();  
-            
-            $entityManager->persist($entreprise);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('profile_show', ["id" => $entreprise->getId()]);
-        }
-
-        return $this->render('entreprise/registre.html.twig', [
-            'user_pro' => $entreprise,
-            'form' => $form->createView(),
-        ]);
-    
-    }
-
-    /**
-     * @Route("/mot_de_passe_oublie", name="userPro_motdepasseoublie", methods={"GET","POST"})
-     */
-    public function mdpoublie(): Response
-    {
-        return $this->render('entreprise/forgetpassword.html.twig');
-    }
-
     
 
      /**
@@ -107,7 +65,21 @@ class EntrepriseController extends AbstractController
      */
     public function index(EntrepriseRepository $EntrepriseRepository): Response
     {
+
+
         return $this->render('entreprise/index.html.twig', [
+            'Entreprise' => $EntrepriseRepository->findAll(),
+            ]);
+    }
+
+    /**
+     * @Route("/map", name="map_front", methods={"GET"})
+     */
+    public function Map(EntrepriseRepository $EntrepriseRepository): Response
+    {
+
+
+        return $this->render('entreprise/_map.html.twig', [
             'Entreprise' => $EntrepriseRepository->findAll(),
             ]);
     }
