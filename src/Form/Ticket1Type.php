@@ -20,7 +20,7 @@ class Ticket1Type extends AbstractType
     {
         $builder
        
-           
+      
             ->add('user', EntityType::class, [
                 'class' => User::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -33,8 +33,18 @@ class Ticket1Type extends AbstractType
                 'choice_label' => 'username'
             ])
 
-            ->add('dateTemp', HiddenType::class)
-            ->add('heure', HiddenType::class)
+            ->add('dateTemp', HiddenType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    
+                ]
+            ])
+            ->add('heure', HiddenType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    
+                ]
+            ])
 
         ;
     }

@@ -1,20 +1,10 @@
 {{ form_start(form) }}
-        {{ form_row(form.user, { 'attr': {'class':'form-control' }} ) }}
-       {{ form_row(form.heure, { 'attr': {'class':'form-control' }}) }}
+       {{ form_row(form.user, { 'attr': {'class':'form-control' }}) }}
+         {{ form_row(form.heure, { 'attr': {'class':'form-control' }}) }}
        {{ form_row(form.dateTemp, { 'attr': {'class':'form-control' }}) }}
-     
-{% block stylesheets %}
-
-  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-datepicker/css/datepicker.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-daterangepicker/daterangepicker.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-timepicker/compiled/timepicker.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-datetimepicker/datertimepicker.css') }}" />
-
-{% endblock %} 
 
 
-  <div class="col-lg-12">
-    <div class="row mt">
+
     
                 <div id="ticket"><div>
                 <label for="ticket_date" class="required"> Votre Date </label>
@@ -34,26 +24,20 @@
                         </span>
                 </div>
         </div>
-        <br>
+              
+  <br/>
+     <div style="font-size: large;">
      <center>
-<button  class="btn btn-outline-info"> Save </button>
-<br>
-   </center>
-   <br> </div>
-</div>
+    <button class="btn btn-outline-secondary"> Enregistrer </button></center>
+    <br>
+    </div>
+
  {% block javascripts %}
 
 
   <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
   <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
   <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
-<script>
 
-  $('#ticket_heure_custom').on("change", function(){
- 
-    $('#ticket_heure').val($('#ticket_heure_custom').val()) ;
-    $('#ticket_dateTemp').val($('#ticket_Date').val());
-  })
-
-</script>
+  
 {% endblock %}

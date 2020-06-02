@@ -13,12 +13,33 @@
 
 
 
-{% block body %}
+{% block body %} 
+
+<div class="page-title-area">
+<div class="row align-items-center">
+<div class="col-sm-6">
+<div class="breadcrumbs-area clearfix">
+<h4 class="page-title pull-left">Dashboard</h4>
+<ul class="breadcrumbs pull-left">
+<li><a href="{{ path('entreprise_index_front') }}">Dashboard</a></li>
+<li><span> ajouter événements </span></li>
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+<br>
+<div class="card bg-gray-100 mb-20 d-inline-block col-lg-12 " style="max-width: 29rm;">
+
+
+<br>
 <div class="col-lg-12"> 
 
 <div class="card bg-gray-100 mb-20 d-inline-block col-lg-12 " style="max-width: 29rm;">
 
     <h1>Ajout événement</h1>
+    <br/>
 
 {% include 'entreprise/evenement/_form.html.twig' %}
     
@@ -43,7 +64,9 @@
     $('#evenement1_heureFin').val($(this).val());
   })
   $('#evenement1_entreprise').addClass('form-control');
+ 
   </script>
+
   <script src="{{ asset('admin/lib/jquery-ui-1.9.2.custom.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
   <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>

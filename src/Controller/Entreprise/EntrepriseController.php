@@ -5,7 +5,7 @@ namespace App\Controller\Entreprise;
 use App\Entity\Entreprise;
 use App\Form\EntrepriseType;
 use App\Repository\EntrepriseRepository;
-
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +16,13 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class EntrepriseController extends AbstractController
 {
     private $encoder;
+    private $userRepository;
 
-    public function __construct(UserPasswordEncoderInterface $encoder) {
+
+    public function __construct(UserPasswordEncoderInterface $encoder,UserRepository $userRepository) {
         $this->encoder = $encoder;
+        $this->userRepository = $userRepository;
+
     }
 
     
@@ -63,24 +67,17 @@ class EntrepriseController extends AbstractController
  /**
      * @Route("/index", name="entreprise_index_front", methods={"GET"})
      */
-    public function index(EntrepriseRepository $EntrepriseRepository): Response
+    public function index(EntrepriseRepository $EntrepriseRepository,UserRepository $userRepository): Response
     {
-
-
-        return $this->render('entreprise/index.html.twig', [
-            'Entreprise' => $EntrepriseRepository->findAll(),
-            ]);
-    }
-
-    /**
-     * @Route("/map", name="map_front", methods={"GET"})
-     */
-    public function Map(EntrepriseRepository $EntrepriseRepository): Response
-    {
-
-
-        return $this->render('entreprise/_map.html.twig', [
-            'Entreprise' => $EntrepriseRepository->findAll(),
-            ]);
+        $nbrTotal = count($this->userRepository->findAll());
+        $nbUser = count($this->userRepository->findBy(['userPro' => null]));
+ 
+        $nbrEntreprise = $nbrTotal - $nbUser;
+          
+        $pourcentUser = round(($nbUser * 100) / $nbrTotal);
+        $pourcentEntreprise = round(($nbrEntreprise * 100) / $nbrTotal);
+ 
+         return $this->render('entreprise/index.html.twig', ['pourcentUser' => $pourcentUser, 'pourcentEnt' => $pourcentEntreprise]) ;
+        
     }
 }
