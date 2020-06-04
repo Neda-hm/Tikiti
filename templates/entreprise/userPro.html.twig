@@ -22,6 +22,9 @@
 <link rel="stylesheet" href="{{ asset('entreprise/assets/css/responsive.css')}}">
 
 <script src="{{ asset('entreprise/assets/js/vendor/modernizr-2.8.3.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
+
+ <script src="{{asset ('admin/lib/jquery/jquery.min.js') }}"></script>
+{%block stylesheets %}{%endblock%}
 </head>
 <body class="body-bg" data-gr-c-s-loaded="true">
 <!--[if lt IE 8]>
@@ -119,35 +122,12 @@
             {% block body %}{% endblock %}
 
 
-
-{%block JavaScript %}
-
-<script src="{{ asset('entreprise/assets/js/vendor/jquery-2.2.4.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
-
 <script src="{{ asset('entreprise/assets/js/popper.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 <script src="{{ asset('entreprise/assets/js/bootstrap.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 <script src="{{ asset('entreprise/assets/js/owl.carousel.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 <script src="{{ asset('entreprise/assets/js/metisMenu.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 <script src="{{ asset('entreprise/assets/js/jquery.slimscroll.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 <script src="{{ asset('entreprise/assets/js/jquery.slicknav.min.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
-
-<script src="https://code.highcharts.com/highcharts.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
-<script src="https://code.highcharts.com/modules/exporting.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
-<script src="https://code.highcharts.com/modules/export-data.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
-
-<script src="https://www.amcharts.com/lib/3/amcharts.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
-<script src="https://www.amcharts.com/lib/3/serial.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
-<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
-<script src="https://www.amcharts.com/lib/3/themes/light.js" type="7e4d286ac804527fab262e63-text/javascript"></script>
-
-<script src="{{ asset('entreprise/assets/js/line-chart.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
-
-<script src="{{ asset('entreprise/assets/js/pie-chart.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
-
-<script src="{{ asset('entreprise/assets/js/bar-chart.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
-
 
 <script src="{{ asset('entreprise/assets/js/plugins.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
 <script src="{{ asset('entreprise/assets/js/scripts.js')}}" type="7e4d286ac804527fab262e63-text/javascript"></script>
@@ -161,6 +141,7 @@
   gtag('config', 'UA-23581568-13');
 </script>
 <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7e4d286ac804527fab262e63-|49" defer=""></script></body>
-{%endblock%}
+
+{%block javascripts %}{%endblock%}
 
 </html>

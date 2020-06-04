@@ -69,15 +69,15 @@ class EntrepriseController extends AbstractController
      */
     public function index(EntrepriseRepository $EntrepriseRepository,UserRepository $userRepository): Response
     {
-        $nbrTotal = count($this->userRepository->findAll());
-        $nbUser = count($this->userRepository->findBy(['userPro' => null]));
+    	$entreprise = $this->getUser()->getUserPro();
+        $reservations = $this->getDoctrine()->getRepository("App:Ticket")->findBy(['entreprise'=>$entreprise]);
+        $evenements = $this->getDoctrine()->getRepository("App:Evenement")->findBy(['entreprise'=>$entreprise]);
+        $nbrClient = $this->getDoctrine()->getRepository("App:Ticket")->countClients($entreprise);
  
-        $nbrEntreprise = $nbrTotal - $nbUser;
-          
-        $pourcentUser = round(($nbUser * 100) / $nbrTotal);
-        $pourcentEntreprise = round(($nbrEntreprise * 100) / $nbrTotal);
- 
-         return $this->render('entreprise/index.html.twig', ['pourcentUser' => $pourcentUser, 'pourcentEnt' => $pourcentEntreprise]) ;
+         return $this->render(
+         	'entreprise/index.html.twig', 
+         	['nbrReservation' => sizeof($reservations), 'nbrEvent' => sizeof($evenements), 'nbrClient'=> $nbrClient]
+         ) ;
         
     }
 }
