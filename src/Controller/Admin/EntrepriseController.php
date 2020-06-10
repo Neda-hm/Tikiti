@@ -41,7 +41,7 @@ class EntrepriseController extends AbstractController
     public function new(Request $request): Response
     {
         $entreprise = new Entreprise();
-        $entreprise->addRole('ADMIN_ENTREPRISE');
+        $entreprise->getUser()->addRole('ADMIN_ENTREPRISE');
         $form = $this->createForm(EntrepriseType::class, $entreprise);
         $form->handleRequest($request);
 
