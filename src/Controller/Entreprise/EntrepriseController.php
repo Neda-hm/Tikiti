@@ -64,7 +64,8 @@ class EntrepriseController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
- /**
+
+    /**
      * @Route("/index", name="entreprise_index_front", methods={"GET"})
      */
     public function index(EntrepriseRepository $EntrepriseRepository,UserRepository $userRepository): Response
@@ -80,4 +81,7 @@ class EntrepriseController extends AbstractController
          ) ;
         
     }
+
+
+    
 }

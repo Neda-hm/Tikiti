@@ -1,6 +1,7 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+    
 admin_login:
     path:  /security/login
     controller: App\Controller\SecurityController::loginAction
@@ -31,6 +32,8 @@ entreprise_controller:
 fos_user_register:
     path: /entreprise/register
     controller: App\Controller\Entreprise\RegistrationController::register
+
+   
 
 
     
