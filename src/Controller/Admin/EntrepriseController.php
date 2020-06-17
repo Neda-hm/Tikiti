@@ -41,18 +41,16 @@ class EntrepriseController extends AbstractController
     public function new(Request $request): Response
     {
         $entreprise = new Entreprise();
-        $entreprise->getUser()->addRole('ADMIN_ENTREPRISE');
         $form = $this->createForm(EntrepriseType::class, $entreprise);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
             $data = $form->getData();
             $plainPassword = $data->getUser()->getPassword();
             $encoded = $this->encoder->encodePassword($entreprise->getUser(), $plainPassword);
             $entreprise->getUser()->setPassword($encoded);      
-
+            $entreprise ->getUser() ->addRole('ADMIN_ENTREPRISE');
             $entityManager->persist($entreprise);
             $entityManager->flush();
 

@@ -212,14 +212,6 @@ class UserController extends FOSRestController
     
                     return new jsonResponse(["error"=> 'invalid token'],400);
                 }
-        
-        /*
-        // sear user exp 1
-        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
-
-        //search user exp 2
-        $user = $userManager->findUserBy(['id' => $id]);
-        */
 
         //search user exp 3
         $user = $this->userRepository->find($id);

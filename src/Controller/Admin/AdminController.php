@@ -9,14 +9,16 @@ use App\Entity\User;
 use App\Form\AdminType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\UserRepository ;
+use App\Repository\TicketRepository;
 
 class AdminController extends AbstractController
 {
 
     private $userRepository;
 
-    public function __construct(UserRepository $userRepository){
+    public function __construct(UserRepository $userRepository , TicketRepository $TicketRepository){
         $this->userRepository = $userRepository;
+        $this->TicketRepository = $TicketRepository;
     }
 
 
@@ -25,18 +27,21 @@ class AdminController extends AbstractController
      */
     public function index()
     {
-       $nbrTotal = count($this->userRepository->findAll());
-       $nbUser = count($this->userRepository->findBy(['userPro' => null]));
+      
+   
+        $nbrTotal = count($this->userRepository->findAll());
+        $nbUser = count($this->userRepository->findBy(['userPro' => null]));
+        $nbrTicket = count($this->TicketRepository->findAll());
 
-       $nbrEntreprise = $nbrTotal - $nbUser;
-         
-       $pourcentUser = round(($nbUser * 100) / $nbrTotal);
-       $pourcentEntreprise = round(($nbrEntreprise * 100) / $nbrTotal);
+ 
+        $nbrEntreprise = $nbrTotal - $nbUser;
+          
+        $pourcentUser = round(($nbUser * 100) / $nbrTotal);
+        $pourcentEntreprise = round(($nbrEntreprise * 100) / $nbrTotal);
+        $pourcentTicket = round(($nbrTicket * 100));
 
-        return $this->render('admin/index.html.twig', ['pourcentUser' => $pourcentUser, 'pourcentEnt' => $pourcentEntreprise]) ;
-       
-       
-           
+ 
+         return $this->render('admin/index.html.twig', [ 'pourcentTicket' =>  $pourcentTicket ,'pourcentUser' => $pourcentUser ,'pourcentEnt' => $pourcentEntreprise]) ;
     } 
     
      /**
