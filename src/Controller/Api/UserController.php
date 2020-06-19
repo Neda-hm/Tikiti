@@ -53,8 +53,8 @@ class UserController extends FOSRestController
                 'adresse' => $request->get('adresse'),
                 'lat' => $request->get('lat'),
                 'lng' => $request->get('lng'),
-                'codePostale' => $request->get('codePostale'),
-                'telephone' => $request->get('telephone')
+                'codePostal' => $request->get('codePostale'),
+                'tel' => $request->get('telephone')
         ];
     
             $validator = Validation::createValidator();
@@ -70,8 +70,8 @@ class UserController extends FOSRestController
                 'adresse' => new Assert\Length(array('min' => 1)),
                 'lat' => new Assert\Length(array('min' => 1)),
                 'lng' => new Assert\Length(array('min' => 1)),
-                'codePostale' => new Assert\Length(array('min' => 1)),
-                'telephone' => new Assert\Length(array('min' => 1)),
+                'codePostal' => new Assert\Length(array('min' => 1)),
+                'tel' => new Assert\Length(array('min' => 1)),
             ));
     
             $violations = $validator->validate($data, $constraint);
@@ -110,9 +110,9 @@ class UserController extends FOSRestController
                 ->setAdresse($data['adresse'])
                 ->setLat($data['lat'])
                 ->setLng($data['lng'])
-                ->setTel($data['telephone'])
+                ->setTel($data['tel'])
                 ->setVille($data['ville'])
-                ->setCodePostale($data['codePostale'])
+                ->setCodePostale($data['codePostal'])
                 ->setApiKey(md5($data['username'].$this->randomString))
             ;
     
@@ -228,7 +228,7 @@ class UserController extends FOSRestController
         empty($request->get('prenom')) ? true : $user->setPrenom($request->get('prenom'));
         empty($request->get('tel')) ? true : $user->setTel($request->get('tel'));
         empty($request->get('adress')) ? true : $user->setAdresse($request->get('adresse'));
-        empty($request->get('codePostal')) ? true : $user->setCodePostale($request->get('codePostale'));
+        empty($request->get('codePostal')) ? true : $user->setCodePostale($request->get('codePostal'));
         empty($request->get('ville')) ? true : $user->setVille($request->get('ville'));
         empty($request->get('lat')) ? true : $user->setLat($request->get('lat'));
         empty($request->get('lng')) ? true : $user->setLng($request->get('lng'));
