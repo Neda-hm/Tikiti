@@ -53,8 +53,8 @@ class UserController extends FOSRestController
                 'adresse' => $request->get('adresse'),
                 'lat' => $request->get('lat'),
                 'lng' => $request->get('lng'),
-                'codePostal' => $request->get('codePostale'),
-                'tel' => $request->get('telephone')
+                'codePostale' => $request->get('codePostal'),
+                'telephone' => $request->get('tel')
         ];
     
             $validator = Validation::createValidator();
@@ -70,8 +70,8 @@ class UserController extends FOSRestController
                 'adresse' => new Assert\Length(array('min' => 1)),
                 'lat' => new Assert\Length(array('min' => 1)),
                 'lng' => new Assert\Length(array('min' => 1)),
-                'codePostal' => new Assert\Length(array('min' => 1)),
-                'tel' => new Assert\Length(array('min' => 1)),
+                'codePostale' => new Assert\Length(array('min' => 1)),
+                'telephone' => new Assert\Length(array('min' => 1)),
             ));
     
             $violations = $validator->validate($data, $constraint);
@@ -110,9 +110,9 @@ class UserController extends FOSRestController
                 ->setAdresse($data['adresse'])
                 ->setLat($data['lat'])
                 ->setLng($data['lng'])
-                ->setTel($data['tel'])
+                ->setTel($data['telephone'])
                 ->setVille($data['ville'])
-                ->setCodePostale($data['codePostal'])
+                ->setCodePostale($data['codePostale'])
                 ->setApiKey(md5($data['username'].$this->randomString))
             ;
     
