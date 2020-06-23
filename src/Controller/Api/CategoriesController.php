@@ -58,7 +58,7 @@ class CategoriesController extends AbstractController
             $data = [];
             foreach ($categories as $categories) {
                 $cat = [ 'nom' => $categories->getNom(),
-                'icone' => 'public/uploads/categories/icone'.$categories->getUrlIcone(),
+                'icone' => 'public/uploads/categories/icones/'.$categories->getUrlIcone(),
                 'id' => $categories->getId()];
                 $data[] = $cat;
                 return new jsonResponse(["categories"=> $data],200);
@@ -94,7 +94,14 @@ class CategoriesController extends AbstractController
                 $data = [
                     'id' => $entreprise->getId(),
                     'nom' => $entreprise->getUser()->getUsername(),
-                    'logo' => 'public/uploads/entreprises/images' . $entreprise->getUrlLogo()
+                    'logo' => 'public/uploads/entreprises/images/' . $entreprise->getUrlLogo() ,
+                    'ville' => $entreprise->getUser()->getVille(),
+                    'adresse' => $entreprise->getUser()->getAdresse(),
+                    'email' => $entreprise->getUser()->getEmail(),
+                    'tel' => $entreprise->getUser()->getTel(),
+                    'codePostal' => $entreprise->getUser()->getCodePostale(),
+                    'lat' => $entreprise->getUser()->getLat(),
+                    'lng' => $entreprise->getUser()->getLng()
 
                 ];
 
