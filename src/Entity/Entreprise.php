@@ -11,6 +11,7 @@ use App\Entity\Ticket;
 use App\Entity\Evenement;
 use App\Entity\HoraireTravail;
 use App\Entity\Categories;
+use App\Entity\Entreprise;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -67,6 +68,10 @@ class Entreprise
      * @var \DateTime
      */
     private $updatedAt;
+      /**
+     * @ORM\Column(type="string")
+     */
+    protected $num_servi;
 
     public function __construct()
     {
@@ -234,6 +239,18 @@ class Entreprise
                 $ticket->setEntreprise(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNumServi(): ?string
+    {
+        return $this->num_servi;
+    }
+
+    public function setNumServi(string $num_servi): self
+    {
+        $this->num_servi = $num_servi;
 
         return $this;
     }

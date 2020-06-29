@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use App\Entity\categorie;
 use App\Entity\Entreprise;
+use App\Entity\HoraireTravail;
+
 use App\Repository\CategoriesRepository;
 use App\Repository\EntrepriseRepository;
 use App\Repository\UserRepository;
@@ -86,8 +88,6 @@ class CategoriesController extends AbstractController
 
             //recherche catégorie par id
             $categorie = $this->CategoriesRepository->find($id);
-
-            //puisque entreprise est relié avec la catégorie symfony recupère tout les entreprise en relation avec la catégorie qu'on a cherché
             $entreprises = $categorie->getEntreprises();
 
             $result = [];
@@ -150,6 +150,46 @@ class CategoriesController extends AbstractController
 
 
         /**
+         * @Route("/entreprise-horaire/{id}", name="entreprise_horaire",  methods={"Get"})
+         * @param Request $request
+         */
+
+        public function entrepriseHoraire(Request $request, $id) {
+            $api_key = $request->get('api_key');
+            $user = $this->userRepository->findOneBy(['api_key' => $api_key]);
+            if ( !$user ) {
+
+                return new jsonResponse(["error"=> 'invalid token'],400);
+            }
+
+            $entreprise = $this->EntrepriseRepository->find($id);
+
+            $heures = $entreprise->getHeures();
+
+            $result = [];
+            foreach ($heures as $heures) {
+                $data = [
+                    'id' => $heures->getId(),
+                    'jours' =>$heures->getJours(),
+                    'entreprise_id' => $heures->getEntreprise(),
+                    'heure_debut_matin' =>$heures->getHeureDebutMatin(),
+                    'heure_fin_matin' =>$heures->getHeureFinMatin(),
+                    'heure_debut_ap' =>$heures->getHeureDebutAp(),
+                    'heure_fin_ap' =>$heures->getheureFinAp(),
+                    'jours' =>$heures->getJours(),
+
+
+                ];
+
+                $result[] = $data;
+            }
+
+            return new jsonResponse(["Horaires de travail "=> $result],200);
+         
+            }        
+
+
+            /**
          * @Route("/entreprise-event/{id}", name="entreprise_event_liste",  methods={"Get"})
          * @param Request $request
          */
@@ -164,7 +204,7 @@ class CategoriesController extends AbstractController
 
             $entreprise = $this->EntrepriseRepository->find($id);
 
-            $event = $entreprise->getEvent();
+          $event = $entreprise->getEvent();
 
             $result = [];
             foreach ($event as $event) {

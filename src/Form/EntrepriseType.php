@@ -6,6 +6,7 @@ use App\Entity\Entreprise;
 use App\Entity\Ticket;
 use App\Entity\Evenement;
 use App\Entity\Categories;
+use App\Entity\HoraireTravail;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

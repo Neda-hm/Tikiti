@@ -6,7 +6,6 @@ use App\Entity\Evenement;
 use App\Entity\Entreprise;
 use App\Form\Evenement1Type;
 use App\Entity\EntrepriseType;
-
 use App\Repository\EvenementRepository;
 use App\Repository\EntrepriseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -26,7 +26,8 @@ class HoraireTravailType extends AbstractType
                 ->addSelect('u')
                 ->orderBy('u.username', 'ASC');
             },
-            'choice_label' => 'user.username'
+            'choice_label' => 'user.username' ,
+            'attr' => ['class' => 'form-control']
         ])
         ->add('jours', ChoiceType::class, [
             'choices'  => [

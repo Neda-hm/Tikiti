@@ -1,10 +1,5 @@
 {{ form_start(form) }}
-
-        {{ form_row(form.jours, { 'attr': {'class':'form-control' }} ) }}
-        {{ form_row(form.heureDebutMatin, { 'attr': {'class':'form-control' }} ) }}
-        {{ form_row(form.heureFinMatin, { 'attr': {'class':'form-control' }} ) }}
-       {{ form_row(form.heureDebutAp, { 'attr': {'class':'form-control' }}) }}
-       {{ form_row(form.heureFinAp, { 'attr': {'class':'form-control' }}) }}
+    {{ form_widget(form) }}
          <div class="col-lg-12">
     <div class="row mt">
            <br>
@@ -16,13 +11,9 @@
     <button class="btn btn-outline-secondary"> Enregistrer </button></center>
     <br>
     </div>
+{{ form_end(form) }}
 
 <script>
 
-  $('#ticket_heure_custom').on("change", function(){
-    alert('ok')
-    $('#ticket_heure').val($('#ticket_heure_custom').val()) ;
-    $('#ticket_dateTemp').val($('#ticket_Date').val());
-  })
 
 </script>
