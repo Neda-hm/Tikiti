@@ -19,7 +19,7 @@ class Ticket1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-       
+
       
             ->add('user', EntityType::class, [
                 'class' => User::class,
@@ -30,21 +30,19 @@ class Ticket1Type extends AbstractType
                     ->orderBy('u.username', 'ASC')
                     ->setParameter('admin', 'adminuser');
                 },
-                'choice_label' => 'username'
+                'choice_label' => 'username', 
+                'attr' => [
+                    'class' => 'form-control',
+                    
+                ]
             ])
 
-            ->add('dateTemp', HiddenType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    
-                ]
-            ])
-            ->add('heure', HiddenType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    
-                ]
-            ])
+            ->add('dateTemp', HiddenType::class)
+          
+           
+            ->add('heure', HiddenType::class)
+          
+          
 
         ;
     }

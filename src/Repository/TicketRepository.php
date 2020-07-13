@@ -30,4 +30,14 @@ class TicketRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function numServi($entreprise) {
+        return $this->getEntityManager()->createQueryBuilder()
+            ->select('count(t.id)')
+            ->from("App:Ticket", 't')
+            ->where("t.entreprise = :entreprise")
+            ->setParameter("entreprise", $entreprise)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

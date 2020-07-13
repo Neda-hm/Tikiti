@@ -9,7 +9,7 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
     
      
     firewalls:
@@ -42,10 +42,10 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/security/admin/, role: ROLE_ADMIN }
-        - { path: ^/security/entreprise-user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/security/entreprise-user/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/security/entreprise-user/, role: ADMIN_ENTREPRISE }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https}
+        - { path: ^/security/admin/, role: ROLE_ADMIN , requires_channel: https }
+        - { path: ^/security/entreprise-user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https}
+        - { path: ^/security/entreprise-user/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https }
+        - { path: ^/security/entreprise-user/, role: ADMIN_ENTREPRISE , requires_channel: https}

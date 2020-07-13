@@ -28,12 +28,14 @@ class TicketController extends AbstractController
     /**
      * @Route("/new/{id}", name="ticket_new_front", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, $id): Response
     {
         $ticket = new Ticket();
         $form = $this->createForm(Ticket1Type::class, $ticket);
         $form->handleRequest($request);
         if ($form->isSubmitted() ) {
+
+            $entreprise = $this->getDoctrine()->getRepository('App:Entreprise')->find($id);
 
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $length = strlen($characters);
@@ -44,12 +46,13 @@ class TicketController extends AbstractController
 
             $ticket->setDate(new \DateTime($ticket->getDateTemp()));
             $ticket->setNum($ticket->getUser()->getId().$randomString);
+            $ticket->setEntreprise($entreprise);
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);
             $entityManager->flush();
 
-            return $this->redirectToRoute('ticket_index_front');
+            return $this->redirectToRoute('ticket_index_front', ['id' => $ticket->getEntreprise()->getId()]);
         }
 
         return $this->render('entreprise/ticket/new.html.twig', [
@@ -79,7 +82,7 @@ class TicketController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('ticket_index_front');
+            return $this->redirectToRoute('ticket_index_front', ['id' => $ticket->getEntreprise()->getId()]);
         }
 
         return $this->render('entreprise/ticket/edit.html.twig', [
@@ -99,6 +102,6 @@ class TicketController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('ticket_index_front');
+        return $this->redirectToRoute('ticket_index_front', ['id' => $ticket->getEntreprise()->getId()]);
     }
 }

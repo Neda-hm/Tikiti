@@ -59,13 +59,12 @@
 </ul>
 </div>
 <div class="clearfix d-md-inline-block d-block">
-<div class="user-profile m-0"><h4>{{app.user.username}} </h4>   
+<div class="user-profile m-0"><h4>{{app.user.username}} </h4>  
 <img class="avatar user-thumb" src="{{ asset('uploads/entreprises/images/'~ app.user.userPro.UrlLogo) }}" alt="image">
 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></h4>
 <div class="dropdown-menu">
 <a class="dropdown-item" href="{{ path('profile_show', {'id': app.user.userPro.id })}}">Profile</a>
 <a class="dropdown-item" href="{{ path('entreprise_edit_front', {'id': app.user.userPro.id })}}">Paramètre</a>
-
 <a class="dropdown-item" href="{{ path('fos_user_security_logout')}}">Log Out</a>
 </div>
 </div>

@@ -36,9 +36,9 @@ class AdminController extends AbstractController
  
         $nbrEntreprise = $nbrTotal - $nbUser;
           
-        $pourcentUser = round(($nbUser * 100) / $nbrTotal);
-        $pourcentEntreprise = round(($nbrEntreprise * 100) / $nbrTotal);
-        $pourcentTicket = round(($nbrTicket * 100));
+        $pourcentUser = round(($nbUser));
+        $pourcentEntreprise = round(($nbrEntreprise ));
+        $pourcentTicket = round(($nbrTicket ));
 
  
          return $this->render('admin/index.html.twig', [ 'pourcentTicket' =>  $pourcentTicket ,'pourcentUser' => $pourcentUser ,'pourcentEnt' => $pourcentEntreprise]) ;

@@ -32,6 +32,7 @@ class UserController extends AbstractController
         $users = $this->getDoctrine()
             ->getRepository(User::class)
             ->findBy(['enabled' => 0 ]);
+            
 
         return $this->render('admin/user/index.html.twig',[
             'users' => $users,

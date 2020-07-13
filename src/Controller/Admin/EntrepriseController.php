@@ -51,6 +51,7 @@ class EntrepriseController extends AbstractController
             $encoded = $this->encoder->encodePassword($entreprise->getUser(), $plainPassword);
             $entreprise->getUser()->setPassword($encoded);      
             $entreprise ->getUser() ->addRole('ADMIN_ENTREPRISE');
+            $entreprise->getUser()->setEnabled(1);
             $entityManager->persist($entreprise);
             $entityManager->flush();
 

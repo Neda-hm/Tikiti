@@ -2,10 +2,12 @@
 
 {% block stylesheets %}
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('entreprise/lib/bootstrap-datepicker/css/datepicker.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('entreprise/lib/bootstrap-daterangepicker/daterangepicker.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('entreprise/lib/bootstrap-timepicker/compiled/timepicker.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('entreprise/lib/bootstrap-datetimepicker/datertimepicker.css') }}" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-datepicker/css/datepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-daterangepicker/daterangepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-timepicker/compiled/timepicker.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/lib/bootstrap-datetimepicker/datertimepicker.css') }}" />
+
 {% endblock %} 
 
 {% block body %}
@@ -44,7 +46,7 @@
 
 {% block javascripts %}
 
-  <script>
+    <script>
   $("#dateD").focusout(function(){
     $('#evenement1_dateDebutTemp').val($(this).val());
   });
@@ -59,12 +61,14 @@
     $('#evenement1_heureFin').val($(this).val());
   })
   $('#evenement1_entreprise').addClass('form-control');
+ 
   </script>
+
   <script src="{{ asset('admin/lib/jquery-ui-1.9.2.custom.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('entreprise/lib/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('entreprise/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('entreprise/lib/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
-  <script src="{{ asset('entreprise/lib/advanced-form-components.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin/lib/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
+  <script src="{{ asset('admin/lib/advanced-form-components.js') }}"></script>
 
 
 {% endblock %}

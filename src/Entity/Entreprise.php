@@ -68,6 +68,10 @@ class Entreprise
      * @var \DateTime
      */
     private $updatedAt;
+ /**
+     * @ORM\Column(type="string")
+     */
+    protected $num_servi;
 
     public function __construct()
     {
@@ -235,6 +239,18 @@ class Entreprise
                 $ticket->setEntreprise(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNumServi(): ?string
+    {
+        return $this->num_servi;
+    }
+
+    public function setNumServi(string $num_servi): self
+    {
+        $this->num_servi = $num_servi;
 
         return $this;
     }

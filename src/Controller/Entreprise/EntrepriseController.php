@@ -18,7 +18,6 @@ class EntrepriseController extends AbstractController
     private $encoder;
     private $userRepository;
 
-
     public function __construct(UserPasswordEncoderInterface $encoder,UserRepository $userRepository) {
         $this->encoder = $encoder;
         $this->userRepository = $userRepository;
@@ -71,9 +70,10 @@ class EntrepriseController extends AbstractController
     public function index(EntrepriseRepository $EntrepriseRepository,UserRepository $userRepository): Response
     {
     	$entreprise = $this->getUser()->getUserPro();
-        $reservations = $this->getDoctrine()->getRepository("App:Ticket")->findBy(['entreprise'=>$entreprise]);
-        $evenements = $this->getDoctrine()->getRepository("App:Evenement")->findBy(['entreprise'=>$entreprise]);
+        $reservations = $this->getDoctrine()->getRepository("App:Ticket")->findBy(['id'=>$entreprise]);
+        $evenements = $this->getDoctrine()->getRepository("App:Evenement")->findBy(['id'=>$entreprise]);
         $nbrClient = $this->getDoctrine()->getRepository("App:Ticket")->countClients($entreprise);
+ 
  
          return $this->render(
          	'entreprise/index.html.twig', 

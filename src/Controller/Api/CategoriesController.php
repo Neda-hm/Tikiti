@@ -19,7 +19,7 @@ use App\Repository\CategoriesRepository;
 use App\Repository\EntrepriseRepository;
 use App\Repository\UserRepository;
 
-
+use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
@@ -28,15 +28,18 @@ class CategoriesController extends AbstractController
     private $CategoriesRepository;
     private $EntrepriseRepository;
     private $userRepository;
+    private $TicketRepository;
+
    
 
     public function __construct(CategoriesRepository $CategoriesRepository , 
-    EntrepriseRepository $EntrepriseRepository, UserRepository $userRepository )
+    EntrepriseRepository $EntrepriseRepository, UserRepository $userRepository  , TicketRepository $TicketRepository )
     {
       
         $this->CategoriesRepository = $CategoriesRepository;
         $this ->EntrepriseRepository = $EntrepriseRepository;
         $this->userRepository = $userRepository;
+        $this->TicketRepository= $TicketRepository;
     }
 
 
@@ -92,6 +95,12 @@ class CategoriesController extends AbstractController
 
             $result = [];
             foreach ($entreprises as $entreprise) {
+                $ticket = $this->TicketRepository->findOneBy(['id' => $entreprise->getId()], ['id' => 'DESC']);
+                $dernier = null;
+                        if ( $ticket != null ) {
+                        $dernier = $ticket->getNum();
+                        };
+                $numServi = $this->TicketRepository->numServi($entreprise);
                 $data = [
                     'id' => $entreprise->getId(),
                     'nom' => $entreprise->getUser()->getUsername(),
@@ -102,7 +111,9 @@ class CategoriesController extends AbstractController
                     'tel' => $entreprise->getUser()->getTel(),
                     'codePostal' => $entreprise->getUser()->getCodePostale(),
                     'lat' => $entreprise->getUser()->getLat(),
-                    'lng' => $entreprise->getUser()->getLng()
+                    'lng' => $entreprise->getUser()->getLng(),
+                    'servi'=> $numServi,
+                    'dernier' => $dernier ,
 
                 ];
 
@@ -171,7 +182,7 @@ class CategoriesController extends AbstractController
                 $data = [
                     'id' => $heures->getId(),
                     'jours' =>$heures->getJours(),
-                    'entreprise_id' => $heures->getEntreprise(),
+                    'entreprise_id' => $heures->getEntreprise()->getId(),
                     'heure_debut_matin' =>$heures->getHeureDebutMatin(),
                     'heure_fin_matin' =>$heures->getHeureFinMatin(),
                     'heure_debut_ap' =>$heures->getHeureDebutAp(),
