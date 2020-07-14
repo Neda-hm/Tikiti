@@ -33,7 +33,6 @@
                 <thead>
             <tr>
                 <th>Num</th>
-                <th>Entreprise</th>
                 <th>Utilisateur</th>
                 <th>Date</th>
                 <th>Heure</th>
@@ -44,7 +43,6 @@
         {% for ticket in tickets %}
             <tr>
                 <td>{{ ticket.num }}</td>
-                <td>{{ ticket.user.username }}</td>
                 <td>{{ ticket.user.prenom }} {{ ticket.user.nom }}</td>
                 <td>{{ ticket.date ? ticket.date|date('Y-m-d') : '' }}</td>
                 <td>{{ ticket.heure }}</td>

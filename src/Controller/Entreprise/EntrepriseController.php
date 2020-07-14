@@ -6,7 +6,7 @@ use App\Entity\Entreprise;
 use App\Form\EntrepriseType;
 use App\Repository\EntrepriseRepository;
 use App\Repository\TicketRepository;
-
+use App\Repository\EvenementRepository ;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,11 +20,13 @@ class EntrepriseController extends AbstractController
     private $encoder;
     private $userRepository;
     private $TicketRepository;
+    private $evenementRepository;
 
-    public function __construct(UserPasswordEncoderInterface $encoder,UserRepository $userRepository, TicketRepository $TicketRepository ) {
+    public function __construct(UserPasswordEncoderInterface $encoder,UserRepository $userRepository,EvenementRepository $evenementRepository, TicketRepository $TicketRepository ) {
         $this->encoder = $encoder;
         $this->userRepository = $userRepository;
         $this->TicketRepository= $TicketRepository;
+        $this->EvenementRepository = $evenementRepository;
 
 
     }
@@ -73,8 +75,8 @@ class EntrepriseController extends AbstractController
     {
         $entreprise = $this->getUser()->getUserPro();
         
-        $evenements = $this->getDoctrine()->getRepository("App:Evenement")->findBy(['id'=>$entreprise]);
- 
+        $evenements = count($this->EvenementRepository->findBy(['entreprise'=>$entreprise]));
+
 
         $ticket = $this->TicketRepository->findOneBy(['id' => $entreprise->getId()], ['id' => 'DESC']);
         $numServi = $this->TicketRepository->numServi($entreprise);
@@ -82,7 +84,7 @@ class EntrepriseController extends AbstractController
 
          return $this->render(
          	'entreprise/index.html.twig', 
-         	['nbrReservation' => $numServi, 'nbrEvent' => sizeof($evenements), 'nbrClient'=> $numServi]
+         	['nbrReservation' => $numServi, 'nbrEvent' => $evenements , 'nbrClient'=> $numServi]
          ) ;
         
     }

@@ -5,6 +5,8 @@ namespace App\Controller\Entreprise;
 use App\Entity\Ticket;
 use App\Form\Ticket1Type;
 use App\Repository\TicketRepository;
+use App\Entity\Entreprise;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,10 +31,12 @@ class TicketController extends AbstractController
     /**
      * @Route("/{id}", name="ticket_index_front", methods={"GET"})
      */
-    public function index(TicketRepository $ticketRepository): Response
+    public function index(TicketRepository $ticketRepository, Entreprise $entreprise): Response
     {
         return $this->render('entreprise/ticket/index.html.twig', [
-            'tickets' => $ticketRepository->findAll(),
+            'tickets' => $ticketRepository->findBy(['entreprise' => $entreprise]),
+            'entrepriseId' => $entreprise->getId(),
+            'entreprise' => $entreprise
         ]);
     }
 
