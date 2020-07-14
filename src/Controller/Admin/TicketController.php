@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Ticket;
+use App\Entity\Entreprise;
+
 use App\Form\TicketType;
 use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,18 +40,27 @@ class TicketController extends AbstractController
         $ticket = new Ticket();
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
+        $entreprise = $ticket->getEntreprise();
         
         if ($form->isSubmitted() ) {
 
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $length = strlen($characters);
-            $randomString = '';
-            for ( $i = 0 ; $i <= 10; $i++ ) {
-                $randomString .= $characters[rand(0, $length - 1)];
-            }
-
             $ticket->setDate(new \DateTime($ticket->getDateTemp()));
-            $ticket->setNum($ticket->getUser()->getId().$randomString);
+            $d_ticket = $this->TicketRepository->findOneBy(['entreprise' => $entreprise , 'date'=>$ticket->getDate()], ['id' => 'DESC']);
+            if ($d_ticket)
+         {  if ($ticket->getDate()==$d_ticket->getDate())
+          { $num= $d_ticket->getNum() ;
+              $ticket->setNum($num+1);}
+           else{
+           $ticket->setNum(1);}
+        }else $ticket->setNum(1);
+            $ticket->setEntreprise($entreprise);
+
+
+
+           
+
+           // $ticket->setDate(new \DateTime($ticket->getDateTemp()));
+           // $ticket->setNum($ticket->getUser()->getId().$randomString);
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);

@@ -10,11 +10,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/ticket")
  */
 class TicketController extends AbstractController
+
 {
+
+    private $TicketRepository;
+
+    public function __construct(TicketRepository $TicketRepository )
+    {
+      
+     
+        $this->TicketRepository = $TicketRepository;
+    }
     /**
      * @Route("/{id}", name="ticket_index_front", methods={"GET"})
      */
@@ -37,15 +48,15 @@ class TicketController extends AbstractController
 
             $entreprise = $this->getDoctrine()->getRepository('App:Entreprise')->find($id);
 
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $length = strlen($characters);
-            $randomString = '';
-            for ( $i = 0 ; $i <= 10; $i++ ) {
-                $randomString .= $characters[rand(0, $length - 1)];
-            }
-
             $ticket->setDate(new \DateTime($ticket->getDateTemp()));
-            $ticket->setNum($ticket->getUser()->getId().$randomString);
+            $d_ticket = $this->TicketRepository->findOneBy(['entreprise' => $entreprise , 'date'=>$ticket->getDate()], ['id' => 'DESC']);
+            if ($d_ticket)
+         {  if ($ticket->getDate()==$d_ticket->getDate())
+          { $num= $d_ticket->getNum() ;
+              $ticket->setNum($num+1);}
+           else{
+           $ticket->setNum(1);}
+        }else $ticket->setNum(1);
             $ticket->setEntreprise($entreprise);
             
             $entityManager = $this->getDoctrine()->getManager();

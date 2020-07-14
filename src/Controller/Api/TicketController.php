@@ -55,20 +55,24 @@ class TicketController extends AbstractController
         $user = $this->userRepository->find($request->get('user_id'));
         $entreprise = $this->EntrepriseRepository->find($request->get('entreprise_id'));
 
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $length = strlen($characters);
-        $randomString = '';
-        for ( $i = 0 ; $i <= 10; $i++ ) {
-            $randomString .= $characters[rand(0, $length - 1)];
-        }
+       
+        
         
         $ticket = new Ticket();
         $ticket
-        ->setNum($user->getId().$randomString)
         ->setDate(new \DateTime($request->get('date')))
         ->setHeure($request->get('heure'))
         ->setUser($user)
         ->setEntreprise($entreprise);
+        $d_ticket = $this->TicketRepository->findOneBy(['entreprise' => $entreprise , 'date'=>$ticket->getDate()], ['id' => 'DESC']);
+        if ($d_ticket)
+     {  if ($ticket->getDate()==$d_ticket->getDate())
+      { $num= $d_ticket->getNum() ;
+          $ticket->setNum($num+1);}
+       else{
+       $ticket->setNum(1);}
+    }else $ticket->setNum(1);
+       
         
         try {
             $this->em->persist($ticket);

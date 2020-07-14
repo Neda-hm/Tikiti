@@ -95,10 +95,10 @@ class CategoriesController extends AbstractController
 
             $result = [];
             foreach ($entreprises as $entreprise) {
-                $ticket = $this->TicketRepository->findOneBy(['id' => $entreprise->getId()], ['id' => 'DESC']);
-                $dernier = null;
-                        if ( $ticket != null ) {
-                        $dernier = $ticket->getNum();
+                $ticket = $this->TicketRepository->findOneBy(['entreprise' => $entreprise,'date'=>new \DateTime() ], ['id' => 'DESC']);
+                $dernier = 0;
+                        if ( $ticket  ) {
+                        $dernier =intval( $ticket->getNum());
                         };
                 $numServi = $this->TicketRepository->numServi($entreprise);
                 $data = [

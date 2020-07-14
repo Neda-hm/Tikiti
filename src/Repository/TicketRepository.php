@@ -32,12 +32,20 @@ class TicketRepository extends ServiceEntityRepository
     }
 
     public function numServi($entreprise) {
-        return $this->getEntityManager()->createQueryBuilder()
-            ->select('count(t.id)')
+        $date = date("Y-m-d") ;
+       $num =$this->getEntityManager()->createQueryBuilder()
+            ->select('t.num')
             ->from("App:Ticket", 't')
-            ->where("t.entreprise = :entreprise")
+            ->where("t.entreprise = :entreprise","t.date = :date")
+            ->setParameter("date",$date)
             ->setParameter("entreprise", $entreprise)
-            ->getQuery()
-            ->getSingleScalarResult();
+            ->getQuery() 
+            ->getOneOrNullResult();
+           
+            if ($num) 
+            return $num['num']; 
+            else  return 0 ;
     }
+
+ 
 }

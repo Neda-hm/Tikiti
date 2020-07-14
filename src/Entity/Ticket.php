@@ -24,7 +24,8 @@ class Ticket
      */
     private $id;
   /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $num;
 

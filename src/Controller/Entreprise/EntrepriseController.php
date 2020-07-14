@@ -5,6 +5,8 @@ namespace App\Controller\Entreprise;
 use App\Entity\Entreprise;
 use App\Form\EntrepriseType;
 use App\Repository\EntrepriseRepository;
+use App\Repository\TicketRepository;
+
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +19,13 @@ class EntrepriseController extends AbstractController
 {
     private $encoder;
     private $userRepository;
+    private $TicketRepository;
 
-    public function __construct(UserPasswordEncoderInterface $encoder,UserRepository $userRepository) {
+    public function __construct(UserPasswordEncoderInterface $encoder,UserRepository $userRepository, TicketRepository $TicketRepository ) {
         $this->encoder = $encoder;
         $this->userRepository = $userRepository;
+        $this->TicketRepository= $TicketRepository;
+
 
     }
 
@@ -50,9 +55,6 @@ class EntrepriseController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $data = $form->getData();
-          //  $entreprise->setLat($data->getLat());
-           // $entreprise->setLng($data->getLng());
-            
 
             return $this->redirectToRoute('entreprise_index_front');
 
@@ -69,15 +71,18 @@ class EntrepriseController extends AbstractController
      */
     public function index(EntrepriseRepository $EntrepriseRepository,UserRepository $userRepository): Response
     {
-    	$entreprise = $this->getUser()->getUserPro();
-        $reservations = $this->getDoctrine()->getRepository("App:Ticket")->findBy(['id'=>$entreprise]);
+        $entreprise = $this->getUser()->getUserPro();
+        
         $evenements = $this->getDoctrine()->getRepository("App:Evenement")->findBy(['id'=>$entreprise]);
-        $nbrClient = $this->getDoctrine()->getRepository("App:Ticket")->countClients($entreprise);
  
- 
+
+        $ticket = $this->TicketRepository->findOneBy(['id' => $entreprise->getId()], ['id' => 'DESC']);
+        $numServi = $this->TicketRepository->numServi($entreprise);
+
+
          return $this->render(
          	'entreprise/index.html.twig', 
-         	['nbrReservation' => sizeof($reservations), 'nbrEvent' => sizeof($evenements), 'nbrClient'=> $nbrClient]
+         	['nbrReservation' => $numServi, 'nbrEvent' => sizeof($evenements), 'nbrClient'=> $numServi]
          ) ;
         
     }

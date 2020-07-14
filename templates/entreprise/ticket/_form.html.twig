@@ -1,29 +1,29 @@
 {{ form_start(form) }}
         {{ form_widget(form) }}
 
-
-         <div class="col-lg-12">
-    <div class="row mt">
+<br>
           <!--  DATE PICKERS -->
 <div>
                 <label for="ticket_date" class="required"> Votre Date </label>
                     <div class="input-group input-large" data-date="01/01/2014" data-date-format="mm/dd/yyyy">
                       <input type="text" class="form-control dpd1 " name="from" id="ticket_Date">
                       <span class="input-group-btn">
-                      <button class="btn btn-theme04" type="button"><i class="fa fa-calendar-check-o"></i></button>
+                      <button class="btn btn-theme04" type="button">
+                      <i class="fa fa-calendar-check-o"></i></button>
 
                     </span></div>
                    </div>
+                   <br>
           <div id="ticket"><div><label for="ticket_heure" class="required">Votre Heure </label>
                 <div class="input-group bootstrap-timepicker">
                       <input type="text" class="form-control timepicker-24"  id="ticket_heure_custom">
                       <span class="input-group-btn">
-                        <button class="btn btn-theme04" type="button"><i class="fa fa-clock-o"></i></button>
+                        <button class="btn btn-theme04" type="button">
+                        <i class="fa fa-clock-o"></i></button>
                         </span>
                 </div>
         </div></div>
        </div></div>
-   <div>
               
   <br/>
      <div style="font-size: large;">
@@ -34,8 +34,9 @@
 
 <script>
 
-    $('#ticket_heure').val($('#ticket_heure_custom').val()) ;
-    $('#ticket_dateTemp').val($('#ticket_Date').val());
+$('#ticket_heure_custom').focusout(function(){
+    $('#ticket1_heure').val($('#ticket_heure_custom').val()) ;
+    $('#ticket1_dateTemp').val($('#ticket_Date').val());
       $('#ticket_entreprise').addClass('form-control');
 
   })
