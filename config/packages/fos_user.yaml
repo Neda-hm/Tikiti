@@ -8,6 +8,3 @@ fos_user:
     registration:
         form:
            type: App\Form\RegistrationType
-        confirmation:
-            template:   FOSUserBundle:Registration:email.txt.twig
-            enabled:    true
